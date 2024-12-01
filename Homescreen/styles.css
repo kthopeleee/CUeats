@@ -16,9 +16,9 @@ body {
 }
 
 .screen {
-  position: relative; /* Parent container for the footer */
+  position: relative;
   width: 280px;
-  height: 580px;
+  height: 550px; /* Reduced height to make room for the footer */
   background-color: white;
   border-radius: 20px;
   overflow-y: auto; /* Allow scrolling */
@@ -64,37 +64,38 @@ body {
 
 .horizontal-scroll {
   display: flex;
-  gap: 5px; /* Reduced spacing between items */
+  gap: 10px; /* Adjusted spacing between items */
   overflow-x: auto; /* Enable horizontal scrolling */
   white-space: nowrap; /* Ensure items stay on one line */
-  padding: 5px 0; /* Adjust padding for tighter look */
+  padding: 5px 0;
 }
 
 .image-box-container {
   display: inline-block; /* Flow items horizontally */
   text-align: center;
-  min-width: 80px; /* Reduced width for closer spacing */
+  min-width: 90px; /* Adjusted width for better spacing */
   flex-shrink: 0; /* Prevent shrinking */
 }
 
 .image-box {
-  background: url('test.png') no-repeat center center;
   background-size: cover;
-  width: 80px; /* Rectangular width */
+  background-position: center;
+  width: 100px; /* Rectangular width */
   height: 60px; /* Rectangular height */
   border-radius: 8px; /* Slightly rounded corners */
 }
 
 .item-title {
   text-align: center;
-  font-size: 10px; /* Slightly smaller font */
-  margin-top: 2px; /* Reduced space between image and text */
+  font-size: 12px;
+  margin-top: 5px;
 }
 
 .dining-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Two items per row */
   gap: 10px; /* Adjust spacing between items */
+  justify-content: center; /* Center the grid */
 }
 
 .dining-item {
@@ -105,13 +106,13 @@ body {
   background: #ffffff;
   border-radius: 8px;
   text-align: center;
-  width: 100px; /* Adjusted width */
+  width: 120px; /* Adjusted width */
 }
 
 .dining-image {
   background-size: cover;
   background-position: center;
-  width: 120%;
+  width: 100%; /* Fill the width of the container */
   height: 80px; /* Adjusted height for rectangular shape */
   border-radius: 8px;
   margin-bottom: 5px;
@@ -130,19 +131,18 @@ body {
 }
 
 .footer {
-  position: absolute; /* Absolutely positioned within the `.screen` */
-  bottom: 0; /* Fixed to the bottom of `.screen` */
-  left: 0;
-  width: 100%; /* Match the `.screen` width */
-  height: 60px; /* Footer height */
+  position: fixed; /* Fixed to ensure it stays inside the `.screen` container */
+  bottom: 150px; /* Move the footer higher */
+  width: 280px; /* Match the `.screen` width */
+  height: 50px; /* Footer height */
   background-color: white; /* Footer background */
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border-top: 1px solid #ccc; /* Subtle divider */
+  border-top: 0px solid #ccc; /* Subtle divider */
   border-radius: 0 0 20px 20px; /* Rounded bottom corners */
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* Add subtle shadow for elevation */
-  z-index: 5; /* Ensure it overlays other content */
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.0); /* Add subtle shadow for elevation */
+  z-index: 10; /* Ensure it overlays other content */
 }
 
 .footer-item {
