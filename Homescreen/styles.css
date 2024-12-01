@@ -66,37 +66,37 @@ body {
 
 .horizontal-scroll {
   display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  white-space: nowrap;
-  padding: 5px 0;
+  gap: 5px; /* Reduced spacing between items */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  white-space: nowrap; /* Ensure items stay on one line */
+  padding: 5px 0; /* Adjust padding for tighter look */
 }
 
 .image-box-container {
-  display: inline-block;
+  display: inline-block; /* Flow items horizontally */
   text-align: center;
-  min-width: 100px;
-  flex-shrink: 0;
+  min-width: 80px; /* Reduced width for closer spacing */
+  flex-shrink: 0; /* Prevent shrinking */
 }
 
 .image-box {
   background: url('test.png') no-repeat center center;
   background-size: cover;
-  width: 80px;
-  height: 80px;
-  border-radius: 10px;
+  width: 80px; /* Rectangular width */
+  height: 60px; /* Rectangular height */
+  border-radius: 8px; /* Slightly rounded corners */
 }
 
 .item-title {
   text-align: center;
-  font-size: 14px;
-  margin-top: 3px;
+  font-size: 10px; /* Slightly smaller font */
+  margin-top: 2px; /* Reduced space between image and text */
 }
 
 .dining-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Two items per row */
-  gap: 5px; /* Reduced spacing between items */
+  gap: 1px; /* Reduced spacing between items */
 }
 
 .dining-item {
@@ -104,19 +104,19 @@ body {
   flex-direction: column; /* Stack content vertically */
   align-items: center; /* Center align all content */
   padding: 8px; /* Reduced padding */
-  background: #f9f9f9; /* Light background for items */
+  background: #ffffff; /* Light background for items */
   border-radius: 8px; /* Slightly smaller corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.0);
   text-align: center; /* Center text */
   width: 100px; /* Adjusted width */
   height: auto; /* Auto height to fit content */
-  margin-bottom: 12px; /* Exactly 12px of space between boxes */
+  margin-bottom: 1px; /* Exactly 12px of space between boxes */
 }
 
 .dining-image {
   background: url('anime.png') no-repeat center center;
   background-size: cover;
-  width: 90px; /* Adjusted width */
+  width: 120px; /* Adjusted width */
   height: 60px; /* Adjusted height */
   border-radius: 8px;
   margin-bottom: 5px; /* Space below the image */
