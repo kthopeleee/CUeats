@@ -101,15 +101,16 @@ body {
 
 .dining-item {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: column; /* Stack content vertically */
+  align-items: center; /* Center align all content */
   padding: 8px; /* Reduced padding */
-  background: #f9f9f9;
+  background: #f9f9f9; /* Light background for items */
   border-radius: 8px; /* Slightly smaller corners */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  width: 100px; /* Narrower width */
-  height: 140px; /* Reduced height */
+  text-align: center; /* Center text */
+  width: 100px; /* Adjusted width */
+  height: auto; /* Auto height to fit content */
+  margin-bottom: 12px; /* Exactly 12px of space between boxes */
 }
 
 .dining-image {
@@ -118,20 +119,21 @@ body {
   width: 90px; /* Adjusted width */
   height: 60px; /* Adjusted height */
   border-radius: 8px;
-  margin-bottom: 5px;
+  margin-bottom: 5px; /* Space below the image */
 }
 
 .dining-info .title {
   font-weight: bold;
-  font-size: 12px;
-  margin-bottom: 3px;
+  font-size: 12px; /* Slightly larger font for the title */
+  margin: 0; /* Removed extra margin */
 }
 
 .dining-info .status {
   font-size: 10px;
-  color: green;
+  color: green; /* Change dynamically for different statuses */
+  margin: 0; /* Removed extra margin */
+  line-height: 1.2; /* Tighter line spacing if necessary */
 }
-
 .footer {
   display: flex;
   justify-content: space-around;
