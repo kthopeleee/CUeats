@@ -61,27 +61,38 @@ body {
   .trending {
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 5px; /* Reduce space below the title */
   }
   
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+  .group1 {
+    display: flex;
+    gap: 5px; /* Reduced space between items in horizontal scroll */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Ensure items stay on one line */
+    margin-top: 5px; /* Reduce space above the images */
+    padding: 5px 0; /* Adjust padding for a tighter look */
   }
+  
+  .image-box-container {
+    display: inline-block; /* Ensure items flow horizontally */
+    text-align: center;
+    min-width: 90px; /* Slightly reduce width for closer spacing */
+    flex-shrink: 0; /* Prevent items from shrinking */
+  }
+  
   
   .image-box {
-    background: url('im_box.png') no-repeat center center;
+    background: url('test.png') no-repeat center center;
     background-size: cover;
-    border: 1px solid #ccc;
-    border-radius: 10px;
+    width: 80px;
     height: 80px;
+    border-radius: 10px;
   }
   
   .item-title {
     text-align: center;
     font-size: 14px;
-    margin-top: 5px;
+    margin-top: 3px; /* Reduce space between image and text */
   }
   
   .dining-item {
@@ -91,7 +102,7 @@ body {
   }
   
   .dining-image {
-    background: url('im_box.png') no-repeat center center;
+    background: url('anime.png') no-repeat center center;
     background-size: cover;
     width: 80px;
     height: 80px;
@@ -137,38 +148,30 @@ body {
     display: flex;
     gap: 10px; /* Space between items */
     overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Ensure items stay on a single line */
     padding: 10px 0;
-    scrollbar-width: thin; /* Adjust scrollbar width */
   }
-
+  
   .horizontal-scroll::-webkit-scrollbar {
     height: 8px; /* Adjust scrollbar height for horizontal scroll */
   }
-
+  
   .horizontal-scroll::-webkit-scrollbar-thumb {
     background: #ccc;
     border-radius: 5px;
   }
-
+  
   .image-box-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: inline-block; /* Ensure items flow horizontally */
+    text-align: center;
     min-width: 100px; /* Minimum width for each item */
     flex-shrink: 0; /* Prevent items from shrinking */
   }
+  
 
-  .image-box {
-    background: url('im_box.png') no-repeat center center;
-    background-size: cover;
-    width: 80px;
-    height: 80px;
-    border-radius: 10px;
-  }
-
+  
   .item-title {
     text-align: center;
     font-size: 14px;
     margin-top: 5px;
   }
-
