@@ -1,177 +1,162 @@
 body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #808080; /* Gray background */
-    font-family: Arial, sans-serif;
-  }
-  
-  .container {
-    position: relative;
-    width: 300px; /* Frame width */
-    height: 640px; /* Frame height */
-  }
-  
-  .screen {
-    position: absolute;
-    top: 20px; /* Align screen */
-    left: 15px;
-    width: 270px;
-    height: 580px;
-    background-color: white;
-    border-radius: 20px;
-    overflow-y: auto; /* Allow scrolling */
-    box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-  }
-  
-  .iphone-frame {
-    position: absolute;
-    width: 300px;
-    height: 640px;
-    background: url('iphonescreen.png') no-repeat center center;
-    background-size: cover;
-    z-index: 2; /* Ensure frame is on top */
-  }
-  
-  .header {
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 10px;
-    color: #333;
-  }
-  
-  .search-bar {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .search-bar input {
-    width: 90%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-  }
-  
-  .trending {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 5px; /* Reduce space below the title */
-  }
-  
-  .group1 {
-    display: flex;
-    gap: 5px; /* Reduced space between items in horizontal scroll */
-    overflow-x: auto; /* Enable horizontal scrolling */
-    white-space: nowrap; /* Ensure items stay on one line */
-    margin-top: 5px; /* Reduce space above the images */
-    padding: 5px 0; /* Adjust padding for a tighter look */
-  }
-  
-  .image-box-container {
-    display: inline-block; /* Ensure items flow horizontally */
-    text-align: center;
-    min-width: 90px; /* Slightly reduce width for closer spacing */
-    flex-shrink: 0; /* Prevent items from shrinking */
-  }
-  
-  
-  .image-box {
-    background: url('test.png') no-repeat center center;
-    background-size: cover;
-    width: 80px;
-    height: 80px;
-    border-radius: 10px;
-  }
-  
-  .item-title {
-    text-align: center;
-    font-size: 14px;
-    margin-top: 3px; /* Reduce space between image and text */
-  }
-  
-  .dining-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .dining-image {
-    background: url('anime.png') no-repeat center center;
-    background-size: cover;
-    width: 80px;
-    height: 80px;
-    border-radius: 10px;
-    margin-right: 10px;
-  }
-  
-  .dining-info {
-    font-size: 14px;
-  }
-  
-  .dining-info .title {
-    font-weight: bold;
-  }
-  
-  .dining-info .status {
-    font-size: 12px;
-    color: green; /* Change to red/orange dynamically */
-  }
-  
-  .footer {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-  }
-  
-  .footer-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 12px;
-  }
-  
-  .footer-icon {
-    width: 24px;
-    height: 24px;
-    background: #ccc;
-    border-radius: 50%;
-    margin-bottom: 5
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #808080; /* Gray background */
+  font-family: Arial, sans-serif;
+}
 
-  }
-  .horizontal-scroll {
-    display: flex;
-    gap: 10px; /* Space between items */
-    overflow-x: auto; /* Enable horizontal scrolling */
-    white-space: nowrap; /* Ensure items stay on a single line */
-    padding: 10px 0;
-  }
-  
-  .horizontal-scroll::-webkit-scrollbar {
-    height: 8px; /* Adjust scrollbar height for horizontal scroll */
-  }
-  
-  .horizontal-scroll::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 5px;
-  }
-  
-  .image-box-container {
-    display: inline-block; /* Ensure items flow horizontally */
-    text-align: center;
-    min-width: 100px; /* Minimum width for each item */
-    flex-shrink: 0; /* Prevent items from shrinking */
-  }
-  
+.container {
+  position: relative;
+  width: 300px; /* Frame width */
+  height: 640px; /* Frame height */
+}
 
-  
-  .item-title {
-    text-align: center;
-    font-size: 14px;
-    margin-top: 5px;
-  }
+.screen {
+  position: absolute;
+  top: 20px;
+  left: 15px;
+  width: 270px;
+  height: 580px;
+  background-color: white;
+  border-radius: 20px;
+  overflow-y: auto; /* Allow scrolling */
+  box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+.iphone-frame {
+  position: absolute;
+  width: 300px;
+  height: 640px;
+  background: url('iphonescreen.png') no-repeat center center;
+  background-size: cover;
+  z-index: 2; /* Ensure frame is on top */
+}
+
+.header {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  width: 90%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.trending {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.horizontal-scroll {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 10px 0;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.horizontal-scroll::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 5px;
+}
+
+.image-box-container {
+  display: inline-block;
+  text-align: center;
+  min-width: 100px;
+  flex-shrink: 0;
+}
+
+.image-box {
+  background: url('test.png') no-repeat center center;
+  background-size: cover;
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+}
+
+.item-title {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 3px;
+}
+
+.dining-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two items per row */
+  gap: 10px; /* Space between items */
+  margin-top: 20px;
+}
+
+.dining-item {
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  align-items: center; /* Center align all content */
+  padding: 10px;
+  background: #f9f9f9; /* Light background for items */
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0);
+  text-align: center; /* Center text */
+}
+
+.dining-image {
+  background: url('anime.png') no-repeat center center;
+  background-size: cover;
+  width: 100%; /* Full width inside the box */
+  height: 100px; /* Adjust height as needed */
+  border-radius: 10px;
+  margin-bottom: 10px; /* Space below the image */
+}
+
+.dining-info .title {
+  font-weight: bold;
+  font-size: 12px; /* Slightly larger font for the title */
+  margin-bottom: 5px; /* Space below the title */
+}
+
+.dining-info .status {
+  font-size: 10px;
+  color: green; /* Change dynamically for different statuses */
+}
+
+.footer {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.footer-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+}
+
+.footer-icon {
+  width: 24px;
+  height: 24px;
+  background: #ccc;
+  border-radius: 50%;
+  margin-bottom: 5px;
+}
