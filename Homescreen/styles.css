@@ -1,0 +1,174 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #808080; /* Gray background */
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    position: relative;
+    width: 300px; /* Frame width */
+    height: 640px; /* Frame height */
+  }
+  
+  .screen {
+    position: absolute;
+    top: 20px; /* Align screen */
+    left: 15px;
+    width: 270px;
+    height: 580px;
+    background-color: white;
+    border-radius: 20px;
+    overflow-y: auto; /* Allow scrolling */
+    box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+  }
+  
+  .iphone-frame {
+    position: absolute;
+    width: 300px;
+    height: 640px;
+    background: url('iphonescreen.png') no-repeat center center;
+    background-size: cover;
+    z-index: 2; /* Ensure frame is on top */
+  }
+  
+  .header {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .search-bar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .search-bar input {
+    width: 90%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+  
+  .trending {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  .image-box {
+    background: url('im_box.png') no-repeat center center;
+    background-size: cover;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    height: 80px;
+  }
+  
+  .item-title {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  .dining-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .dining-image {
+    background: url('im_box.png') no-repeat center center;
+    background-size: cover;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    margin-right: 10px;
+  }
+  
+  .dining-info {
+    font-size: 14px;
+  }
+  
+  .dining-info .title {
+    font-weight: bold;
+  }
+  
+  .dining-info .status {
+    font-size: 12px;
+    color: green; /* Change to red/orange dynamically */
+  }
+  
+  .footer {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .footer-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+  }
+  
+  .footer-icon {
+    width: 24px;
+    height: 24px;
+    background: #ccc;
+    border-radius: 50%;
+    margin-bottom: 5
+
+  }
+  .horizontal-scroll {
+    display: flex;
+    gap: 10px; /* Space between items */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    padding: 10px 0;
+    scrollbar-width: thin; /* Adjust scrollbar width */
+  }
+
+  .horizontal-scroll::-webkit-scrollbar {
+    height: 8px; /* Adjust scrollbar height for horizontal scroll */
+  }
+
+  .horizontal-scroll::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 5px;
+  }
+
+  .image-box-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100px; /* Minimum width for each item */
+    flex-shrink: 0; /* Prevent items from shrinking */
+  }
+
+  .image-box {
+    background: url('im_box.png') no-repeat center center;
+    background-size: cover;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+  }
+
+  .item-title {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+
