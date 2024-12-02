@@ -1,0 +1,160 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #808080; /* Gray background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .container {
+    position: relative;
+    width: 375px;
+    height: 812px; /* iPhone frame height */
+    background: #FFFFFF;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Header */
+  header {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 10;
+    padding: 15px 20px 0 20px;
+  }
+  
+  .logo {
+    font-family: 'Noto Serif', serif;
+    font-weight: bold;
+    font-size: 32px;
+    color: #003373;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  .search-bar input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #003373;
+    border-radius: 10px;
+    font-size: 14px;
+  }
+  
+  .trending {
+    font-size: 20px;
+    font-family: 'Alegreya', serif;
+    font-weight: bold;
+    margin: 10px 0;
+
+  }
+  
+  .horizontal-scroll {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 10px 0;
+  }
+  
+  .horizontal-scroll .image-box {
+    flex: none;
+    text-align: center;
+  }
+  
+  .horizontal-scroll img {
+    width: 100px;
+    height: 70px;
+    border-radius: 10px;
+  }
+  
+  .horizontal-scroll .item-title {
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  /* Dining Section */
+  .dining-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 20px;
+    overflow-y: auto;
+    flex-grow: 1;
+  }
+  
+  .dining-item {
+    text-align: center;
+    font-family: 'Inter', sans-serif; 
+
+  }
+  
+  .dining-item img {
+    width: 160px;
+    height: 120px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .dining-info {
+    text-align: left; /* Align text to the right */
+    font-family: 'Inter', sans-serif; /* Default font */
+
+  }
+  
+  .dining-info .title {
+    font-size: 20px;
+    /* font-weight: bold; */
+    font-family: 'Alegreya', serif; /* Use Alegreya for the dining hall name */
+    margin-bottom: 5px;
+  }
+  
+  .dining-info .status {
+    font-size: 12px;
+    font-family: 'Inter', sans-serif; /* Use Inter for the hours */
+    color: green;
+    
+  }
+  
+  .dining-info .closing {
+    font-size: 12px;
+    font-family: 'Inter', sans-serif; /* Use Inter for the closing hours */
+    color: #FFA500;
+  }
+  
+  .dining-info .closed {
+    font-size: 12px;
+    font-family: 'Inter', sans-serif; /* Use Inter for the closing hours */
+    color: red;
+  }
+  /* Footer */
+  footer {
+    position: sticky;
+    bottom: 0;
+    background: #FFFFFF;
+    border-top: 1px solid #DDD;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+  }
+  
+  .footer-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+  }
+  
+  .footer-icon {
+    width: 24px;
+    height: 24px;
+    background: #CCC;
+    border-radius: 50%;
+    margin-bottom: 5px;
+  }
