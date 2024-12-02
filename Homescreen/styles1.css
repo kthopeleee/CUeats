@@ -152,9 +152,8 @@ body {
   }
   
   .footer-icon {
-    width: 24px;
-    height: 24px;
-    background: #CCC;
-    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background: white;
     margin-bottom: 5px;
   }
