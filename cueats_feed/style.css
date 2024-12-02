@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main-container {
+    max-width: 540px;
+    padding: 1rem;
+}
+
+.title h1 { 
+    text-align: center;
+    color: dodgerblue;
+}
+
+.navigation {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    border: 1px solid black;
+    font-size: 30px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    
+}
+
+.navigation a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+}
+
+.navigation span {
+    font-size: 15px;
+}
+
+.fa-circle-plus {
+    color: dodgerblue;
+}
+
+.reviews_container {
+
+}
+
+.review-item {
+    border-top: 1px solid gray;
+    
+}
