@@ -157,3 +157,11 @@ body {
     background: white;
     margin-bottom: 5px;
   }
+
+  .divider {
+    width: 90%;
+    height: 2px; /* Thin line */
+    background-color: #DDD; /* Light gray color */
+    margin: 0px auto; /* Centers the divider and adds vertical spacing */
+
+  }
