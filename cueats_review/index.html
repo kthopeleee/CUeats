@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Review</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
         integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -12,56 +12,63 @@
 </head>
 
 <body>
-    <div class="page-container">
-        <a href="#" class="back"><i class="fa-solid fa-angle-left"></i> Review</a>
-        <div class="add-review-container">
-            <p>Ferris Booth Commons</p>
-            <h1>Grilled Cheese</h1>
-            <div class="ratings">
-                <i class="fa-regular fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-                <i class="fa-regular fa-star"></i>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <a href="#" class="back"><i class="fa-solid fa-angle-left"></i> Review</a>
+        </header>
+
+        <!-- Review Content -->
+        <div class="page-container">
+            <div class="add-review-container">
+                <p>Ferris Booth Commons</p>
+                <h1>Grilled Cheese</h1>
+                <div class="ratings">
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
+                <div class="date">
+                    <p>When did you visit?</p>
+                    <select name="" id="">
+                        <option value="Today">Today</option>
+                        <option value="Yesterday">Yesterday</option>
+                        <option value="Last Week">Last Week</option>
+                        <option value="Last Month">Last Month</option>
+                    </select>
+                </div>
+                <div class="impression">
+                    <button>Fresh</button>
+                    <button>Tasty</button>
+                    <button>Convenient</button>
+                    <button>Stale</button>
+                    <button>Bland</button>
+                    <button>Undercooked</button>
+                </div>
+                <textarea name="" placeholder="Add more details here..."></textarea>
+                <button class="add-btn"><i class="fa-solid fa-circle-plus"></i> <span>Add photo</span></button>
+                <button class="review-btn">Submit Review</button>
             </div>
-            <div class="date">
-                <p>When did you visit?</p>
-                <select name="" id="">
-                    <option value="Today">Today</option>
-                    <option value="Yesterday">Yesterday</option>
-                    <option value="Last Week">Last Week</option>
-                    <option value="Last Month">Last Month</option>
-                </select>
-            </div>
-            <div class="impression">
-                <button>Fresh</button>
-                <button>Tasty</button>
-                <button>Convenient</button>
-                <button>Stale</button>
-                <button>Bland</button>
-                <button>Undercooked</button>
-            </div>
-            <textarea name="" placeholder="Add more details here..."></textarea>
-            <button class="add-btn"><i class="fa-solid fa-circle-plus"></i> <span>Add photo</span></button>
-            <button class="review-btn">Review</button>
         </div>
-    </div>
 
-    <div class="navigation">
-        <a href="#">
-            <i class="fa-solid fa-house"></i>
-            <span>Home</span>
-        </a>
-        <a href="#">
-            <i class="fa-solid fa-circle-plus"></i>
-            <span>Review</span>
-        </a>
-        <a href="#">
-            <i class="fa-solid fa-newspaper"></i>
-            <span>Feed</span>
-        </a>
+        <!-- Footer -->
+        <footer>
+            <div class="footer-item">
+                <img src="../Images/Nav_icons/home.png" alt="Home" class="footer-icon">
+                <div>Home</div>
+            </div>
+            <div class="footer-item">
+                <img src="../Images/Nav_icons/review.png" alt="Review" class="footer-icon">
+                <div>Review</div>
+            </div>
+            <div class="footer-item">
+                <img src="../Images/Nav_icons/feed.png" alt="Feed" class="footer-icon">
+                <div>Feed</div>
+            </div>
+        </footer>
     </div>
-
 </body>
 
 </html>
