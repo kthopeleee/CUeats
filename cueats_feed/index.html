@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Feed</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        integrity="sha512-4earxv7rUP1dZvp8hx0U1jfE/9L7Ef0yjCcp3z9E4cl1DDeqDJy5NXYDK24vChc0NJ1y1KPmOJZ1+CuD/J8WQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-    <section class="main-container">
-        <header class="title">
-            <h1>Feed</h1>
-        </header>
+<div class="container">
+    <!-- Top status bar -->
+    <div class="status-bar">
+        <span class="time">10:01</span>
+        <span class="icons">
+            <i class="fa-solid fa-battery-full"></i>
+        </span>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+        <h1 class="page-title">Feed</h1>
         <div class="filters">
             <a href="#" class="active">All</a>
             <a href="#">Chef Mike's</a>
@@ -24,121 +30,125 @@
             <a href="#">Grace Dodge</a>
             <a href="#">John Jay</a>
         </div>
-        <section class="reviews_container">
-            <div class="review-item">
-                <h3>Meatball Sub Special</h3>
-                <div class="ratings-options">
-                    <span>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </span>
-                    <span>
-                        <a href="#"><i class="fa-regular fa-heart"></i></a>
-                        <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
-                    </span>
-                </div>
-                <div class="content">
-                    <img src="/images/meatball_sub.png" alt="Meatball Sub Photo">
-                    <p>Might've looked good at first but turned out to be wet and soggy.</p>
-                </div>
-                <div class="location-time">
-                    <span>Chef Mike's</span>
-                    <span>58 mins ago</span>
-                </div>
-            </div>
-            <div class="review-item">
-                <h3>Fusion Special</h3>
-                <div class="ratings-options">
-                    <span>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </span>
-                    <span>
-                        <i class="fa-solid fa-heart"></i>
-                        <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
-                    </span>
-                </div>
-                <div class="content">
-                    <p>YUMMY NEW MEAL AT FERRIS. It didn't look too good at first but this was were sooo juicy and
-                        flavorful.</p>
-                </div>
-                <div class="location-time">
-                    <span>John Jay</span>
-                    <span>1 hr ago</span>
-                </div>
-            </div>
-            <div class="review-item">
-                <h3>Grilled Cheese</h3>
-                <div class="ratings-options">
-                    <span>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </span>
-                    <span>
-                        <a href="#"><i class="fa-regular fa-heart"></i></a>
-                        <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
-                    </span>
-                </div>
-                <div class="content">
-                    <img src="/images/grilled_cheese_cu.png" alt="Grilled Cheese Photo">
-                    <p>the most elite meal at columbia. i would eat this every day if i could. never once have i been
-                        disappointed by the grilled cheese... <a href="#">Read more</a></p>
-                </div>
-                <div class="location-time">
-                    <span>Ferris Booth Commons</span>
-                    <span>2 hrs ago</span>
-                </div>
-            </div>
-            <div class="review-item">
-                <h3>Lemon Pepper Chicken</h3>
-                <div class="ratings-options">
-                    <span>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </span>
-                    <span>
-                        <a href="#"><i class="fa-regular fa-heart"></i></a>
-                        <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
-                    </span>
-                </div>
-                <div class="content">
-                    <p>Is there a professional chef that works in the back? because this fish has been spiced and grilled to PERFECTION.</p>
-                </div>
-                <div class="location-time">
-                    <span>Grace Dodge</span>
-                    <span>7 hrs ago</span>
-                </div>
-            </div>
-        </section>
-    </section>
-
-    <div class="navigation">
-        <a href="#">
-            <i class="fa-solid fa-house"></i>
-            <span>Home</span>
-        </a>
-        <a href="#">
-            <i class="fa-solid fa-circle-plus"></i>
-            <span>Review</span>
-        </a>
-        <a href="#">
-            <i class="fa-solid fa-newspaper"></i>
-            <span>Feed</span>
-        </a>
     </div>
 
-</body>
+    <!-- Scrollable section for reviews -->
+    <div class="section">
+        <div class="review-item">
+            <h3>Meatball Sub Special</h3>
+            <div class="ratings-options">
+                <span class="stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </span>
+                <span class="actions">
+                    <a href="#"><i class="fa-regular fa-heart"></i></a>
+                    <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
+                </span>
+            </div>
+            <div class="content">
+                <img src="meatball_sub.png" alt="Meatball Sub Photo">
+                <p>Might've looked good at first but turned out to be wet and soggy.</p>
+            </div>
+            <div class="location-time">
+                <span>Chef Mike's</span>
+                <span>58 mins ago</span>
+            </div>
+        </div>
 
+        <div class="review-item">
+            <h3>Fusion Special</h3>
+            <div class="ratings-options">
+                <span class="stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </span>
+                <span class="actions">
+                    <i class="fa-solid fa-heart"></i>
+                    <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
+                </span>
+            </div>
+            <div class="content">
+                <p>YUMMY NEW MEAL AT FERRIS. It didn't look too good at first but this was sooo juicy and flavorful.</p>
+            </div>
+            <div class="location-time">
+                <span>John Jay</span>
+                <span>1 hr ago</span>
+            </div>
+        </div>
+
+        <div class="review-item">
+            <h3>Grilled Cheese</h3>
+            <div class="ratings-options">
+                <span class="stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </span>
+                <span class="actions">
+                    <a href="#"><i class="fa-regular fa-heart"></i></a>
+                    <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
+                </span>
+            </div>
+            <div class="content">
+                <img src="grilled_cheese_cu.png" alt="Grilled Cheese Photo">
+                <p>the most elite meal at columbia. i would eat this every day if i could. never once have i been
+                    disappointed by the grilled cheese... <a href="#">Read more</a></p>
+            </div>
+            <div class="location-time">
+                <span>Ferris Booth Commons</span>
+                <span>2 hrs ago</span>
+            </div>
+        </div>
+
+        <div class="review-item">
+            <h3>Lemon Pepper Chicken</h3>
+            <div class="ratings-options">
+                <span class="stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </span>
+                <span class="actions">
+                    <a href="#"><i class="fa-regular fa-heart"></i></a>
+                    <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
+                </span>
+            </div>
+            <div class="content">
+                <p>Is there a professional chef that works in the back? because this fish has been spiced and grilled to PERFECTION.</p>
+            </div>
+            <div class="location-time">
+                <span>Grace Dodge</span>
+                <span>7 hrs ago</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-item">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+        </div>
+        <div class="nav-item">
+            <i class="fa-solid fa-circle-plus"></i>
+            <span>Review</span>
+        </div>
+        <div class="nav-item">
+            <i class="fa-solid fa-newspaper"></i>
+            <span>Feed</span>
+        </div>
+    </div>
+</div>
+</body>
 </html>
