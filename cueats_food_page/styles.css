@@ -35,7 +35,7 @@ body {
 }
 
 .food-image {
-    width: 100%; /* Maintain full width of the container */
+    width: 100%;
     height: 150px; /* Set a fixed height for a rectangular shape */
     object-fit: cover; /* Ensure the image covers the container proportionally */
     border-radius: 12px;
@@ -118,6 +118,18 @@ body {
 .review {
     padding: 10px 20px;
     font-size: 14px;
+}
+
+.review-stars-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.review-stars {
+    display: flex;
+    color: #FFD700;
 }
 
 .review-footer {
