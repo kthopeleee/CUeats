@@ -1,0 +1,150 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #808080;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    position: relative;
+    width: 375px;
+    height: 812px;
+    background: #FFFFFF;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-back {
+    padding: 10px 20px;
+    font-size: 12px;
+    color: #000000;
+}
+
+.food-image-container {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.food-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.food-details {
+    padding: 20px;
+    text-align: left;
+}
+
+.food-title {
+    font-family: 'Noto Serif', serif;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.ratings {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.stars {
+    color: #FFD700;
+}
+
+.rating-score {
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+.food-tags {
+    font-size: 14px;
+    color: #555555;
+    margin-bottom: 10px;
+}
+
+.tag {
+    font-weight: bold;
+    color: #007BFF;
+}
+
+.review-button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid #D9D9D9;
+    margin: 15px 20px;
+}
+
+.reviews-header {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 20px;
+}
+
+.sort-options {
+    font-size: 12px;
+    color: #555555;
+    margin: 10px 20px;
+}
+
+.review {
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+.review-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #555555;
+}
+
+.ratings-options i {
+    margin-right: 10px;
+    color: #007BFF;
+    cursor: pointer;
+}
+
+.nav-bar {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid #D9D9D9;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+    color: #555555;
+}
+
+.nav-item i {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
