@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-4earxv7rUP1dZvp8hx0U1jfE/9L7Ef0yjCcp3z9E4cl1DDeqDJy5NXYDK24vChc0NJ1y1KPmOJZ1+CuD/J8WQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #808080; /* Gray background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .container {
+    position: relative;
+    width: 375px;
+    height: 812px; /* iPhone frame height */
+    background: #FFFFFF;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Top status bar area */
+  .status-bar {
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 10px;
+    font-size: 14px;
+    border-bottom: 1px solid #D9D9D9;
+  }
+
+  .header {
+    position: relative;
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #D9D9D9;
+  }
+
+  .header .back-button {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    font-size: 14px;
+    text-decoration: none;
+    color: #000;
+  }
+
+  .header-title {
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Noto Serif', serif;
+    margin-top: 20px;
+  }
+
+  .header-subtitle {
+    text-align: center;
+    font-size: 14px;
+    color: #30AC3E;
+    margin-top: 5px;
+  }
+
+  /* Meal periods tabs */
+  .tabs {
+    display: flex;
+    border-bottom: 1px solid #A1A1A4;
+    margin-top: 20px;
+  }
+
+  .tab {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    padding: 5px 0;
+    font-size: 14px;
+  }
+
+  .tab:not(:last-child) {
+    border-right: 1px solid #A1A1A4;
+  }
+
+  .tab.breakfast,
+  .tab.dinner {
+    background: #fff;
+  }
+
+  .tab.lunch {
+    background: #003373;
+    color: #fff;
+  }
+
+  .tab-times {
+    font-size: 8px;
+    margin-top: 2px;
+    color: inherit;
+  }
+
+  /* Section for items */
+  .section {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    position: relative;
+  }
+
+  /* Dishes container */
+  .dish {
+    margin-bottom: 40px;
+  }
+
+  .images-row {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    margin-bottom: 10px;
+  }
+
+  .images-row img {
+    width: 130px;
+    height: 150px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+
+  .dish-title {
+    font-family: 'Noto Serif', serif;
+    font-size: 20px;
+    line-height: 27px;
+    margin-bottom: 5px;
+  }
+
+  .rating-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+
+  .rating-row i {
+    color: #000;
+    font-size: 14px;
+    margin-right: 2px;
+  }
+
+  .rating-row i.empty {
+    color: #fff;
+    text-shadow: 0 0 0 #000;
+    border: 1px solid #000;
+    border-radius: 2px;
+    margin-right: 2px;
+  }
+
+  .rating-text {
+    font-size: 16px;
+    margin-left: 10px;
+  }
+
+  .dish-info-green {
+    font-size: 12px;
+    color: #30AC3E;
+    margin-bottom: 2px;
+  }
+
+  .dish-info {
+    font-size: 12px;
+    color: #000;
+    margin-bottom: 5px;
+  }
+
+  .review {
+    display: flex;
+    align-items: flex-start;
+    font-size: 12px;
+    color: #000;
+  }
+
+  .review i {
+    margin-right: 5px;
+  }
+
+  .read-more {
+    font-size: 12px;
+    font-weight: 700;
+    color: #75AADB;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+
+  .divider {
+    border-bottom: 1px solid rgba(195, 195, 195, 0.99);
+    margin: 20px 0;
+  }
+
+  /* Bottom nav */
+  .bottom-nav {
+    border-top: 1px solid #D9D9D9;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  .bottom-nav .nav-item {
+    text-align: center;
+    font-size: 12px;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bottom-nav .nav-item i {
+    font-size: 20px;
+    margin-bottom: 2px;
+  }
+
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="status-bar">
+    10:01 &nbsp;<i class="fa-solid fa-battery-full"></i>
+  </div>
+
+  <div class="header">
+    <a href="#" class="back-button">&lt; Home</a>
+    <div class="header-title">Ferris Booth Commons</div>
+    <div class="header-subtitle">Open until 8:00 pm</div>
+    <div class="tabs">
+      <div class="tab breakfast">
+        Breakfast
+        <div class="tab-times">7:00am-11:30am</div>
+      </div>
+      <div class="tab lunch">
+        Lunch
+        <div class="tab-times">11:00am-2:30pm</div>
+      </div>
+      <div class="tab dinner">
+        Dinner
+        <div class="tab-times">4:30pm-8:00pm</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <!-- Grilled Cheese Dish -->
+    <div class="dish">
+      <div class="images-row">
+        <img src="black.png" alt="Grilled Cheese">
+        <img src="black.png" alt="Grilled Cheese">
+        <img src="black.png" alt="Grilled Cheese">
+      </div>
+      <div class="dish-title">Grilled Cheese</div>
+      <div class="rating-row">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star empty"></i>
+        <span class="rating-text">4.1 (120 ratings)</span>
+      </div>
+      <div class="dish-info-green">Action Station until 4:00 pm</div>
+      <div class="dish-info">Contains dairy, gluten</div>
+      <div class="review">
+        <i class="fa-regular fa-comment-dots"></i>
+        “So cruncy...goey”
+        <span class="read-more">Read more</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Waffles Dish -->
+    <div class="dish">
+      <div class="images-row">
+        <img src="black.png" alt="Waffles">
+        <img src="black.png" alt="Waffles">
+        <img src="black.png" alt="Waffles">
+      </div>
+      <div class="dish-title">Waffles</div>
+      <div class="rating-row">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star empty"></i>
+        <i class="fa-solid fa-star empty"></i>
+        <span class="rating-text">3.0 (80 ratings)</span>
+      </div>
+      <div class="dish-info-green">Main Line until 4:00 pm</div>
+      <div class="dish-info">Contains dairy, gluten</div>
+      <div class="review">
+        <i class="fa-regular fa-comment-dots"></i>
+        “super fluffy and soft...so yum”
+        <span class="read-more">Read more</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Nav -->
+  <div class="bottom-nav">
+    <div class="nav-item">
+      <i class="fa-solid fa-house"></i>
+      Home
+    </div>
+    <div class="nav-item">
+      <i class="fa-solid fa-plus"></i>
+      Review
+    </div>
+    <div class="nav-item">
+      <i class="fa-solid fa-newspaper"></i>
+      Feed
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
