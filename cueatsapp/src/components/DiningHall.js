@@ -1,6 +1,6 @@
 // src/components/DiningHall.js
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom'; // Import useParams
 import './DiningHall.css';
 import Footer from './Footer';
@@ -16,6 +16,13 @@ function DiningHall() {
   const { foodItems, loading: foodLoading, error: foodError } = useFoodItems(diningHallId);
   const foodItemIds = foodItems.map((item) => item.id);
   const { reviews, loading: reviewsLoading, error: reviewsError } = useReviews(foodItemIds);
+
+  useEffect(() => {
+    console.log('Dining Hall ID:', diningHallId);
+    console.log('Dining Hall Data:', diningHall);
+    console.log('Food Items:', foodItems);
+    console.log('Reviews:', reviews);
+  }, [diningHallId, diningHall, foodItems, reviews]);
 
   if (hallLoading || foodLoading || reviewsLoading) {
     return <div className="container">Loading...</div>;
@@ -98,12 +105,18 @@ function DiningHall() {
           return (
             <Link to={`/food-item-details/${item.id}`} key={item.id} className="dish-link">
               <div className="dish">
-                <div className="images-row">
+                <div className="images-row images-row-{item.images.length}">
                   {item.images.map((img, idx) => (
-                    <img key={idx} src={`/assets/Dining_Hall_Images/${img}`} alt={item.name} onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = '/assets/Dining_Hall_Images/default.png';
-                    }} />
+                    <img
+                      key={idx}
+                      src={`/assets/Images/${img}`} // Updated path
+                      alt={item.name}
+                      className="dish-image"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = '/assets/Images/default.png'; // Updated fallback
+                      }}
+                    />
                   ))}
                 </div>
                 <div className="dish-title">{item.name}</div>

@@ -1,7 +1,11 @@
+// src/components/SearchPage.js
+
 import React, { useState, useRef } from 'react';
+import { Link } from 'react-router-dom'; // Import Link if needed
 import './SearchPage.css';
 import Header from './Header';
 import Footer from './Footer';
+import SearchBar from './SearchBar'; // Import the SearchBar component
 
 // Logo and Nav Icons
 import Logo from '../assets/NavBar_icons/logoimg.png';
@@ -26,8 +30,24 @@ function SearchPage() {
   ];
 
   const diningHalls = [
-    "Hewitt", "Diana", "Ferris", "Grace Dodge",
-    "John Jay", "Faculty House", "Chef Mikes", "Chef Dons"
+    { id: "hewitt", name: "Hewitt" }, 
+    { id: "diana", name: "Diana" }, 
+    { id: "ferris", name: "Ferris" }, 
+    { id: "grace-dodge", name: "Grace Dodge" },
+    { id: "john-jay", name: "John Jay" }, 
+    { id: "faculty-house", name: "Faculty House" }, 
+    { id: "chef-mikes", name: "Chef Mikes" }, 
+    { id: "chef-dons", name: "Chef Dons" }
+  ];
+
+  const foodItems = [
+    { id: "mac-cheese-hewitt", name: "Mac and Cheese" },
+    { id: "grilled-cheese-ferris", name: "Grilled Cheese" },
+    { id: "ramen-grace-dodge", name: "Ramen" },
+    { id: "smoothie-diana", name: "Smoothie" },
+    { id: "tacos-john-jay", name: "Tacos" },
+    { id: "bagels-john-jay", name: "Bagels" }
+    // Add more food items as needed
   ];
 
   const handleFocus = () => {
@@ -49,15 +69,8 @@ function SearchPage() {
           <img src={Logo} alt="CU Eats Logo" className="logo-icon" />
           <span className="logo-text">CU Eats</span>
         </div>
-        <div className="search-bar">
-          <input 
-            type="text" 
-            placeholder="Search for a specific dish or dining hall" 
-            onFocus={handleFocus} 
-            onBlur={handleBlur} 
-            ref={inputRef}
-          />
-        </div>
+        {/* Integrate SearchBar Component */}
+        <SearchBar foodItems={foodItems} diningHalls={diningHalls} />
       </div>
 
       {/* Main Content */}
@@ -65,26 +78,25 @@ function SearchPage() {
         <div className="section-title">Trending Dishes</div>
         <div className="trending-grid">
           {trendingDishes.map((dish, index) => (
-            <div key={index} className="dish-item">
+            <Link to={`/food-item-details/${dish.name.toLowerCase().replace(/ /g, '-')}`} key={index} className="dish-item">
               <div className="dish-name">{dish.name}</div>
               <div className="dish-hall">{dish.hall}</div>
-            </div>
+            </Link>
           ))}
         </div>
 
         <div className="section-title">Dining Halls</div>
         <div className="halls-grid">
           {diningHalls.map((hall, index) => (
-            <div key={index} className="hall-item">
-              {hall}
-            </div>
+            <Link to={`/dining-hall/${hall.id}`} key={index} className="hall-item">
+              {hall.name}
+            </Link>
           ))}
         </div>
       </div>
 
-      {/* Bottom Nav */}
+      {/* Footer */}
       <Footer />
-
 
       {/* Keyboard Simulation with image */}
       {isKeyboardVisible && (

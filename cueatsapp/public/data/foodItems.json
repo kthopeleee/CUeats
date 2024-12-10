@@ -1,23 +1,69 @@
 
 [
-    {
-      "id": "grilled-cheese",
-      "name": "Grilled Cheese",
-      "diningHallId": "ferris",
-      "allergies": ["dairy", "wheat"],
-      "images": ["grilled_cheese.png"],
-      "rating": 4.5,
-      "tags": ["long wait", "tasty", "tomato soup"],
-      "station": "Action Station"
-    },
-    {
-      "id": "waffles",
-      "name": "Waffles",
-      "diningHallId": "jjs",
-      "allergies": ["dairy", "gluten"],
-      "images": ["waffles.png"],
-      "rating": 4.2,
-      "tags": ["crispy", "sweet", "quick"],
-      "station": "Main Line"
-    }
-  ]
+  {
+    "id": "grilled-cheese-ferris",
+    "name": "Grilled Cheese",
+    "diningHallId": "ferris",
+    "allergies": ["dairy", "wheat"],
+    "images": ["grilled_cheese.png"],
+    "rating": 4.5,
+    "tags": ["long wait", "tasty", "tomato soup"],
+    "station": "Action Station",
+    "meals": ["breakfast", "lunch", "dinner"]
+  },
+  {
+    "id": "waffles-ferris",
+    "name": "Waffles",
+    "diningHallId": "ferris",
+    "allergies": ["dairy", "gluten"],
+    "images": ["waffles.png"],
+    "rating": 4.2,
+    "tags": ["crispy", "sweet", "quick"],
+    "station": "Main Line",
+    "meals": ["breakfast", "lunch"]
+  },
+  {
+    "id": "salmon-jj",
+    "name": "Salmon",
+    "diningHallId": "john-jay",
+    "allergies": ["fish"],
+    "images": ["Salmon.png"],
+    "rating": 4.7,
+    "tags": ["fresh", "healthy", "delicious"],
+    "station": "Grill Station",
+    "meals": ["lunch", "dinner"]
+  },
+  {
+    "id": "tacos-jj",
+    "name": "Tacos",
+    "diningHallId": "john-jay",
+    "allergies": ["gluten"],
+    "images": ["Tacos.jpg"],
+    "rating": 4.0,
+    "tags": ["spicy", "flavorful", "quick"],
+    "station": "Taco Station",
+    "meals": ["lunch", "dinner"]
+  },
+  {
+    "id": "honey-chicken-hewitt",
+    "name": "Honey Chicken",
+    "diningHallId": "hewitt",
+    "allergies": ["dairy"],
+    "images": ["HoneyChicken.jpg"],
+    "rating": 4.8,
+    "tags": ["sweet", "crispy", "juicy"],
+    "station": "Main Line",
+    "meals": ["dinner"]
+  },
+  {
+    "id": "burger-hewitt",
+    "name": "Burger",
+    "diningHallId": "hewitt",
+    "allergies": ["gluten"],
+    "images": ["Burger.jpg"],
+    "rating": 4.3,
+    "tags": ["classic", "beefy", "cheesy"],
+    "station": "Action Station",
+    "meals": ["lunch", "dinner"]
+  }
+]

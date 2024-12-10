@@ -112,21 +112,71 @@
 .dish {
   margin-bottom: 20px; 
 }
+/* src/components/DiningHall.css */
 
+/* Container for images */
 .images-row {
   display: flex;
-  gap: 10px;
-  overflow-x: auto;
-  margin-bottom: 10px;
+  justify-content: center; /* Center images horizontally */
+  align-items: center;    /* Center images vertically */
+  margin-bottom: 20px;    /* Space below the images */
 }
 
-.images-row img {
-  width: 130px;
-  height: 150px;
-  border-radius: 10px;
-  object-fit: cover;
+/* Style for individual images */
+.dish-image {
+  object-fit: cover;      /* Maintain aspect ratio and cover the container */
+  height: 200px;          /* Fixed height for uniformity */
+  border-radius: 8px;    /* Rounded corners for aesthetics */
 }
 
+/* Layout for 1 Image */
+.images-row-1 .dish-image {
+  flex: 1;
+  width: 100%;
+  margin: 0; /* No margins needed */
+}
+
+/* Layout for 2 Images */
+.images-row-2 .dish-image {
+  flex: 1;
+  width: calc(50% - 10px); /* Subtracting margins to fit within the container */
+  margin: 0 5px; /* Equal margins on left and right */
+}
+
+/* Layout for 3 Images */
+.images-row-3 .dish-image {
+  flex: 1;
+  width: calc(33.33% - 10px); /* Subtracting margins to fit within the container */
+  margin: 0 5px; /* Smaller margins for more images */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  /* Adjust image heights for smaller screens */
+  .dish-image {
+    height: 150px;
+  }
+
+  /* For 3 images on smaller screens, stack vertically */
+  .images-row-3 {
+    flex-direction: column;
+  }
+
+  .images-row-3 .dish-image {
+    width: 100%;
+    margin: 5px 0; /* Vertical margins */
+  }
+
+  /* Similarly, adjust for 2 images if needed */
+  .images-row-2 {
+    flex-direction: column;
+  }
+
+  .images-row-2 .dish-image {
+    width: 100%;
+    margin: 5px 0; /* Vertical margins */
+  }
+}
 .dish-title {
   font-family: 'Noto Serif', serif;
   font-size: 20px;

@@ -1,7 +1,7 @@
 // src/components/FoodItemDetails.js
 
-import React from 'react';
-import { Link, useParams } from 'react-router-dom'; // Import useParams
+import React, { useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import './FoodItemDetails.css';
 import Footer from './Footer';
 
@@ -13,6 +13,12 @@ function FoodItemDetails() {
   const { foodItemId } = useParams(); // Get foodItemId from URL
   const { foodItem, loading: foodLoading, error: foodError } = useFoodItem(foodItemId);
   const { reviews, loading: reviewsLoading, error: reviewsError } = useReviewsForFoodItem(foodItemId);
+
+  useEffect(() => {
+    console.log('Food Item ID:', foodItemId);
+    console.log('Food Item Data:', foodItem);
+    console.log('Reviews:', reviews);
+  }, [foodItemId, foodItem, reviews]);
 
   if (foodLoading || reviewsLoading) {
     return <div className="container">Loading...</div>;
@@ -36,9 +42,9 @@ function FoodItemDetails() {
     );
   }
 
-  // Calculate average rating and total ratings (for static display)
+  // Calculate average rating and total ratings
   const averageRating = foodItem.rating.toFixed(1);
-  const totalRatings = reviews.length; // Alternatively, use a fixed number if desired
+  const totalRatings = reviews.length;
 
   return (
     <div className="container">
@@ -50,7 +56,7 @@ function FoodItemDetails() {
       {/* Food Image */}
       <div className="food-image-container">
         <img
-          src={`/assets/Dining_Hall_Images/${foodItem.images[0]}`}
+          src={`/assets/Images/${foodItem.images[0]}`}
           alt={foodItem.name}
           className="food-image"
           loading="lazy"
@@ -134,7 +140,7 @@ function FoodItemDetails() {
 
       <hr className="divider" />
 
-      {/* Navigation Bar */}
+      {/* Footer */}
       <Footer />
     </div>
   );

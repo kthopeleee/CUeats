@@ -1,0 +1,82 @@
+/* src/components/SearchBar.css */
+
+.search-bar {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px; /* Adjust as needed */
+  }
+  
+  .search-bar input {
+    width: 100%;
+    padding: 8px 40px 8px 40px; /* Adjust padding for search icon */
+    border: 1px solid #CFCFCF;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+  }
+  
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    pointer-events: none; /* Allows clicks to pass through to input */
+  }
+  
+  .search-icon img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #FFFFFF;
+    border: 1px solid #CFCFCF;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    max-height: 300px; /* Adjust as needed */
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dropdown-section {
+    padding: 10px 15px;
+  }
+  
+  .dropdown-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: #333333;
+    margin-bottom: 5px;
+  }
+  
+  .dropdown-item {
+    padding: 8px 0;
+    cursor: pointer;
+    font-size: 13px;
+    color: #555555;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #F5F5F5;
+  }
+  
+  @media (max-width: 600px) {
+    .dropdown {
+      max-height: 200px;
+    }
+  
+    .search-bar input {
+      padding: 8px 35px 8px 35px; /* Adjust padding for smaller screens */
+    }
+  
+    .search-icon img {
+      width: 18px;
+      height: 18px;
+    }
+  }
