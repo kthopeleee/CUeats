@@ -57,65 +57,80 @@ function Review() {
   };
 
   return (
-    <div className="container">
+    <div className="review-container">
       {/* Header */}
-      <header>
-        <Link to={`/food-item-details/${foodItemId}`} className="back">
+      <header className="review-header">
+        <Link to={`/food-item-details/${foodItemId}`} className="back-button">
           <i className="fa-solid fa-angle-left"></i> Back to Review
         </Link>
       </header>
 
       {/* Review Form */}
-      <div className="page-container">
-        <div className="add-review-container">
-          <h2>Submit Your Review</h2>
-          <form onSubmit={handleSubmit} className="review-form">
-            <div className="form-group">
-              <label>Rating:</label>
-              <div className="stars-input">
-                {Array.from({ length: 5 }, (_, idx) => (
-                  <i
-                    key={idx}
-                    className={idx < stars ? 'fa-solid fa-star active' : 'fa-regular fa-star'}
-                    onClick={() => setStars(idx + 1)}
-                    style={{ cursor: 'pointer', color: '#ffc107', marginRight: '5px' }}
-                  ></i>
-                ))}
-              </div>
+      <div className="review-form-container">
+        <h2 className="form-title">Submit Your Review</h2>
+        <form onSubmit={handleSubmit} className="review-form">
+          {/* Rating Section */}
+          <div className="form-group">
+            <label className="form-label">Rating:</label>
+            <div className="stars-input">
+              {Array.from({ length: 5 }, (_, idx) => (
+                <i
+                  key={idx}
+                  className={idx < stars ? 'fa-solid fa-star active' : 'fa-regular fa-star'}
+                  onClick={() => setStars(idx + 1)}
+                  aria-label={`${idx + 1} Star`}
+                  role="button"
+                  tabIndex={0}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter') setStars(idx + 1);
+                  }}
+                ></i>
+              ))}
             </div>
-            <div className="form-group">
-              <label>Impressions:</label>
-              <div className="impression-buttons">
-                {impressionOptions.map((impression) => (
-                  <button
-                    type="button"
-                    key={impression}
-                    className={`impression-button ${impressions.includes(impression) ? 'selected' : ''}`}
-                    onClick={() => handleImpressionClick(impression)}
-                  >
-                    {impression}
-                  </button>
-                ))}
-              </div>
+          </div>
+
+          {/* Impressions Section */}
+          <div className="form-group">
+            <label className="form-label">Impressions:</label>
+            <div className="impression-tags">
+              {impressionOptions.map((impression) => (
+                <button
+                  type="button"
+                  key={impression}
+                  className={`impression-tag ${impressions.includes(impression) ? 'selected' : ''}`}
+                  onClick={() => handleImpressionClick(impression)}
+                >
+                  {impression}
+                </button>
+              ))}
             </div>
-            <div className="form-group">
-              <label>Review:</label>
-              <textarea
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                required
-                placeholder="Add more details here..."
-              ></textarea>
-            </div>
-            <button type="button" className="add-btn">
-              <i className="fa-solid fa-circle-plus"></i> <span>Add photo</span>
-            </button>
-            <button type="submit" className="review-btn" disabled={loading}>
-              {loading ? 'Submitting...' : 'Submit Review'}
-            </button>
-            {error && <p className="error-message">{error}</p>}
-          </form>
-        </div>
+          </div>
+
+          {/* Review Text Section */}
+          <div className="form-group">
+            <label className="form-label">Review:</label>
+            <textarea
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              required
+              placeholder="Add more details here..."
+              className="review-textarea"
+            ></textarea>
+          </div>
+
+          {/* Add Photo Button */}
+          <button type="button" className="add-photo-button">
+            <i className="fa-solid fa-circle-plus"></i> <span>Add Photo</span>
+          </button>
+
+          {/* Submit Button */}
+          <button type="submit" className="submit-review-button" disabled={loading}>
+            {loading ? 'Submitting...' : 'Submit Review'}
+          </button>
+
+          {/* Error Message */}
+          {error && <p className="error-message">{error}</p>}
+        </form>
       </div>
 
       {/* Footer */}
