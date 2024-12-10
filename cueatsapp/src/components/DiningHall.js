@@ -1,6 +1,6 @@
 // src/components/DiningHall.js
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom'; // Import useParams
 import './DiningHall.css';
 import Footer from './Footer';
@@ -16,6 +16,9 @@ function DiningHall() {
   const { foodItems, loading: foodLoading, error: foodError } = useFoodItems(diningHallId);
   const foodItemIds = foodItems.map((item) => item.id);
   const { reviews, loading: reviewsLoading, error: reviewsError } = useReviews(foodItemIds);
+
+  // State for selected meal time filter
+  const [selectedMeal, setSelectedMeal] = useState('All');
 
   useEffect(() => {
     console.log('Dining Hall ID:', diningHallId);
@@ -55,6 +58,16 @@ function DiningHall() {
     return reviews.filter((review) => review.foodItemId === foodItemId);
   };
 
+  // Function to filter dishes based on selected meal time
+  const getFilteredFoodItems = () => {
+    if (selectedMeal === 'All') {
+      return foodItems;
+    }
+    return foodItems.filter((item) => item.mealTime.includes(selectedMeal));
+  };
+
+  const filteredFoodItems = getFilteredFoodItems();
+
   return (
     <div className="container">
       <div className="header">
@@ -64,48 +77,63 @@ function DiningHall() {
         <div className="header-title">{diningHall.name}</div>
         {/* Open Until */}
         <div className="header-subtitle">Open until {diningHall.timesOpen.dinner[1]}</div>
-        {/* Operating Times Tabs */}
+        {/* Horizontally Scrollable Filter Tabs */}
         <div className="tabs">
           {/* Breakfast */}
           {diningHall.timesOpen.breakfast[0] && diningHall.timesOpen.breakfast[1] && (
-            <div className="tab breakfast">
-              <a href="#breakfast">
-                Breakfast
-                <div className="tab-times">{diningHall.timesOpen.breakfast[0]} - {diningHall.timesOpen.breakfast[1]}</div>
-              </a>
-            </div>
+            <button
+              className={`tab-button ${selectedMeal === 'Breakfast' ? 'active' : ''}`}
+              onClick={() => setSelectedMeal('Breakfast')}
+              aria-label={`Filter for Breakfast (Open from ${diningHall.timesOpen.breakfast[0]} to ${diningHall.timesOpen.breakfast[1]})`}
+            >
+              Breakfast<br />
+              <span className="tab-time">{diningHall.timesOpen.breakfast[0]} - {diningHall.timesOpen.breakfast[1]}</span>
+            </button>
           )}
           {/* Lunch */}
           {diningHall.timesOpen.lunch[0] && diningHall.timesOpen.lunch[1] && (
-            <div className="tab lunch">
-              <a href="#lunch">
-                Lunch
-                <div className="tab-times">{diningHall.timesOpen.lunch[0]} - {diningHall.timesOpen.lunch[1]}</div>
-              </a>
-            </div>
+            <button
+              className={`tab-button ${selectedMeal === 'Lunch' ? 'active' : ''}`}
+              onClick={() => setSelectedMeal('Lunch')}
+              aria-label={`Filter for Lunch (Open from ${diningHall.timesOpen.lunch[0]} to ${diningHall.timesOpen.lunch[1]})`}
+            >
+              Lunch<br />
+              <span className="tab-time">{diningHall.timesOpen.lunch[0]} - {diningHall.timesOpen.lunch[1]}</span>
+            </button>
           )}
           {/* Dinner */}
           {diningHall.timesOpen.dinner[0] && diningHall.timesOpen.dinner[1] && (
-            <div className="tab dinner">
-              <a href="#dinner">
-                Dinner
-                <div className="tab-times">{diningHall.timesOpen.dinner[0]} - {diningHall.timesOpen.dinner[1]}</div>
-              </a>
-            </div>
+            <button
+              className={`tab-button ${selectedMeal === 'Dinner' ? 'active' : ''}`}
+              onClick={() => setSelectedMeal('Dinner')}
+              aria-label={`Filter for Dinner (Open from ${diningHall.timesOpen.dinner[0]} to ${diningHall.timesOpen.dinner[1]})`}
+            >
+              Dinner<br />
+              <span className="tab-time">{diningHall.timesOpen.dinner[0]} - {diningHall.timesOpen.dinner[1]}</span>
+            </button>
           )}
+          {/* All */}
+          <button
+            className={`tab-button ${selectedMeal === 'All' ? 'active' : ''}`}
+            onClick={() => setSelectedMeal('All')}
+            aria-label="Show all dishes"
+          >
+            All<br />
+            <span className="tab-time">All Meals</span>
+          </button>
         </div>
       </div>
 
       <div className="section">
-        {/* Iterate through food items */}
-        {foodItems.map((item) => {
+        {/* Iterate through filtered food items */}
+        {filteredFoodItems.map((item) => {
           const itemReviews = getReviewsForFoodItem(item.id);
-          const ratingText = `${item.rating} (${itemReviews.length} ratings)`;
+          const ratingText = `${item.rating.toFixed(1)} (${itemReviews.length} rating${itemReviews.length !== 1 ? 's' : ''})`;
 
           return (
             <Link to={`/food-item-details/${item.id}`} key={item.id} className="dish-link">
               <div className="dish">
-                <div className="images-row images-row-{item.images.length}">
+                <div className={`images-row images-row-${item.images.length}`}>
                   {item.images.map((img, idx) => (
                     <img
                       key={idx}
@@ -147,9 +175,14 @@ function DiningHall() {
             </Link>
           );
         })}
+
+        {/* No Dishes Message */}
+        {filteredFoodItems.length === 0 && (
+          <div className="no-dishes-message">No dishes available for the selected meal time.</div>
+        )}
       </div>
 
-      {/* Bottom Nav */}
+      {/* Footer */}
       <Footer />
     </div>
   );
