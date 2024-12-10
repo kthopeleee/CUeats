@@ -1,3 +1,5 @@
+/* src/components/Feed.css */
+
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
@@ -7,16 +9,6 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: "Inter", sans-serif;
-    background-color: #808080;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-/* The container styling is the same */
 .container {
     width: 375px;
     height: 812px;
@@ -37,7 +29,7 @@ body {
     justify-content: space-between;
     padding: 0 10px;
     font-size: 14px;
-    background: #000000;
+    background: #003373;
     color: #ffffff;
 }
 
@@ -47,6 +39,7 @@ body {
 
 .status-bar .icons i {
     margin-left: 10px;
+    font-size: 16px;
 }
 
 /* Header */
@@ -54,7 +47,7 @@ body {
     border-bottom: 1px solid #D9D9D9;
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 10px 20px;
 }
 
 .page-title {
@@ -67,31 +60,31 @@ body {
 
 /* Filters (Tabs) */
 .filters {
-    overflow: auto;
-    white-space: nowrap;
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-bottom: 1rem;
     font-family: "Inter", sans-serif;
 }
 
-.filters a {
-    padding: 5px 15px;
-    border: 1px solid gray;
-    display: inline-block;
-    text-decoration: none;
-    text-align: center;
-    color: black;
-    margin: 0;
+.filter-btn {
+    padding: 8px 16px;
+    border: 1px solid #CFCFCF;
+    border-radius: 20px;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
     font-size: 14px;
 }
 
-.filters a:not(:last-child) {
-    border-right: none;
+.filter-btn:hover {
+    background-color: #e0e0e0;
 }
 
-.filters .active {
+.filter-btn.active {
     background-color: #003373;
-    color: white;
+    color: #ffffff;
     border: none;
 }
 
@@ -99,7 +92,7 @@ body {
 .section {
     flex: 1;
     overflow-y: auto;
-    padding: 10px;
+    padding: 10px 20px;
 }
 
 /* Review Items */
@@ -114,6 +107,7 @@ body {
     margin-bottom: 0.5rem;
     font-family: "Noto Serif", serif;
     font-size: 20px;
+    color: #003373;
 }
 
 .ratings-options {
@@ -121,22 +115,34 @@ body {
     justify-content: space-between;
     font-size: 15px;
     margin-bottom: 0.5rem;
+    align-items: center;
 }
 
 .stars i {
     margin-right: 2px;
-    color: #000;
+    color: #FFD700; /* Gold color for filled stars */
+}
+
+.stars .fa-regular.fa-star {
+    color: #C0C0C0; /* Silver color for empty stars */
 }
 
 .actions i {
     margin-left: 10px;
-    color: #000;
+    color: #555555;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.actions i:hover {
+    color: #003373;
 }
 
 .content {
     margin: 0.5rem 0;
     display: flex;
     gap: 1rem;
+    align-items: center;
 }
 
 .content img {
@@ -146,9 +152,16 @@ body {
     object-fit: cover;
 }
 
+.content p {
+    font-size: 14px;
+    color: #333333;
+    line-height: 1.4;
+}
+
 .content a {
     text-decoration: none;
     color: #75AADB;
+    font-weight: bold;
 }
 
 .location-time {
@@ -160,30 +173,42 @@ body {
     margin-top: 0.5rem;
 }
 
-/* Bottom Nav */
-.bottom-nav {
+/* Load More Button */
+.load-more-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.load-more-btn {
+    padding: 10px 20px;
+    background-color: #003373;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.load-more-btn:hover {
+    background-color: #00224d;
+}
+
+/* No Reviews Message */
+.no-reviews {
+    text-align: center;
+    color: #A1A1A4;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+/* Footer */
+.footer {
     border-top: 1px solid #D9D9D9;
     height: 60px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     background: #ffffff;
-}
-
-.bottom-nav .nav-item {
-    text-align: center;
-    font-size: 12px;
-    color: #000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.bottom-nav .nav-item i {
-    font-size: 20px;
-    margin-bottom: 2px;
-}
-
-.fa-circle-plus {
-    color: #75AADB;
 }
