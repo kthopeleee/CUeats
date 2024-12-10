@@ -27,7 +27,7 @@ function FoodItemDetails() {
         <div className="food-title-container">
           <div className="food-title">Grilled Cheese</div>
           {/* Wrap the Review button with Link */}
-          <Link to="/review" className="review-link">
+          <Link to="/review-item" className="review-link">
             <button className="review-button">Review</button>
           </Link>
         </div>

@@ -17,7 +17,8 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/feed" element={<Feed />} />
-        <Route path="/review" element={<SearchPage />} />
+        <Route path="/review" element={<SearchPage />} /> 
+        <Route path="/review-item" element={<Review />} />
         <Route path="/dining-hall" element={<DiningHall />} />
         <Route path="/food-item-details" element={<FoodItemDetails />} />
         {/* Add more routes as needed */}

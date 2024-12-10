@@ -1,0 +1,138 @@
+[
+    {
+      "id": "ferris",
+      "name": "Ferris Booth Commons",
+      "location": "Location A",
+      "image": "../assets/Dining_Hall_Images/Ferris.png",
+      "timesOpen": {
+        "breakfast": ["7:30 AM", "11:00 AM"],
+        "lunch": ["11:00 AM", "5:00 PM"],
+        "dinner": ["5:00 PM", "8:00 PM"]
+    },
+      "isOpen": true,
+      "foodItems": ["grilled-cheese", "waffles"]
+    },
+    {
+        "id": "jjs",
+        "name": "JJ's Place",
+        "location": "Location A",
+        "image": "../assets/Dining_Hall_Images/JJs.png",
+        "timesOpen": {
+            "breakfast": ["12:00 AM", "10:00 AM"],
+            "lunch": ["11:00 AM", "5:00 PM"],
+            "dinner": ["5:00 PM", "8:00 PM"]
+        },
+        "isOpen": true,
+        "foodItems": ["grilled-cheese", "waffles"]
+    },
+    {
+        "id": "facultyHouse",
+        "name": "Faculty House",
+        "location": "Location A",
+        "image": "../assets/Dining_Hall_Images/Ferris.png",
+        "timesOpen": {
+            "breakfast": ["", ""],
+            "lunch": ["11:00 AM", "5:00 PM"],
+            "dinner": ["5:00 PM", "8:00 PM"]
+        },
+        "isOpen": true,
+        "foodItems": ["grilled-cheese", "waffles"]
+    },
+    {
+        "id": "chefMikes",
+        "name": "Chef Mike's",
+        "location": "Location A",
+        "image": "../assets/Dining_Hall_Images/ChefMikes.png",
+        "timesOpen": {
+            "breakfast": ["", ""],
+            "lunch": ["11:00 AM", "5:00 PM"],
+            "dinner": ["5:00 PM", "8:00 PM"]
+        },
+        "isOpen": true,
+        "foodItems": ["grilled-cheese", "waffles"]
+    }, 
+    {
+        "id": "chefDons",
+        "name": "Chef Don's",
+        "location": "Location A",
+        "image": "../assets/Dining_Hall_Images/Ferris.png",
+        "timesOpen": {
+            "breakfast": ["8:00 AM", "11:00 AM"],
+            "lunch": ["11:00 AM", "5:00 PM"],
+            "dinner": ["5:00 PM", "8:00 PM"]
+        },
+        "isOpen": true,
+        "foodItems": ["grilled-cheese", "waffles"]
+    },
+    {
+        "id": "johnjay",
+        "name": "John Jay",
+        "location": "Location A",
+        "image": "../assets/Dining_Hall_Images/JohnJay.png",
+        "timesOpen": {
+            "breakfast": ["9:30 AM", "11:00 AM"],
+            "lunch": ["11:00 AM", "5:00 PM"],
+            "dinner": ["5:00 PM", "8:00 PM"]
+        },
+        "isOpen": true,
+        "foodItems": ["grilled-cheese", "waffles"]
+    },
+    {
+        "id": "Hewitt",
+        "name": "Hewitt",
+        "location": "Location A",
+        "image": "../assets/Dining_Hall_Images/Hewitt.png",
+        "timesOpen": {
+            "breakfast": ["7:00 AM", "10:00 AM"],
+            "lunch": ["11:00 AM", "5:00 PM"],
+            "dinner": ["5:00 PM", "8:00 PM"]
+        },
+        "isOpen": true,
+        "foodItems": ["grilled-cheese", "waffles"]
+    }, 
+    {
+        "id": "facshack",
+        "name": "Ferris Booth Commons",
+        "location": "Location A",
+        "image": "../assets/Dining_Hall_Images/Ferris.png",
+        "timesOpen": {
+            "breakfast": ["", ""],
+            "lunch": ["11:00 AM", "5:00 PM"],
+            "dinner": ["5:00 PM", "8:00 PM"]
+        },
+        "isOpen": true,
+        "foodItems": ["grilled-cheese", "waffles"]
+    },
+    {
+        "id": "gracedodge",
+        "name": "Grace Dodge",
+        "location": "Location A",
+        "image": "../assets/Dining_Hall_Images/GraceDodge.png",
+        "timesOpen": {
+            "breakfast": ["", ""],
+            "lunch": ["11:00 AM", "5:00 PM"],
+            "dinner": ["5:00 PM", "8:00 PM"]
+        },
+        "isOpen": true,
+        "foodItems": ["grilled-cheese", "waffles"]
+    },
+    {
+        "id": "diana",
+        "name": "Diana",
+        "location": "Location A",
+        "image": "../assets/Dining_Hall_Images/Diana.png",
+        "timesOpen": {
+            "breakfast": ["9:00 AM", "3:00 PM"],
+            "lunch": ["11:00 AM", "5:00 PM"],
+            "dinner": ["5:00 PM", "8:00 PM"]
+        },
+        "isOpen": true,
+        "foodItems": ["grilled-cheese", "waffles"]
+    }
+
+
+
+
+
+
+]  
