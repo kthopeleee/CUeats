@@ -39,7 +39,7 @@ function SearchPage() {
   };
 
   return (
-    <div className="search-container">
+    <div className="container">
       {/* Use the Header component */}
       <Header />
 

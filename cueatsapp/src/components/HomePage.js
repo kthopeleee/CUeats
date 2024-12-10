@@ -1,4 +1,7 @@
+// src/components/HomePage.js
+
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link
 import './HomePage.css';
 import Footer from './Footer';
 
@@ -62,13 +65,18 @@ function HomePage() {
 
       {/* Dining Hall Section */}
       <div className="dining-section">
-        <div className="dining-item">
-          <img src={Ferris} alt="Ferris Booth" />
-          <div className="dining-info">
-            <div className="title">Ferris Booth</div>
-            <div className="status">Open till 7:00 pm</div>
+        {/* Ferris Booth - Make this clickable */}
+        <Link to="/dining-hall" className="dining-link">
+          <div className="dining-item">
+            <img src={Ferris} alt="Ferris Booth" />
+            <div className="dining-info">
+              <div className="title">Ferris Booth</div>
+              <div className="status">Open till 7:00 pm</div>
+            </div>
           </div>
-        </div>
+        </Link>
+
+        {/* Other Dining Halls - Not clickable */}
         <div className="dining-item">
           <img src={JohnJay} alt="John Jay" />
           <div className="dining-info">

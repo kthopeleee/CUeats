@@ -1,21 +1,20 @@
+// src/components/FoodItemDetails.js
+
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link
 import './FoodItemDetails.css';
 import Footer from './Footer';
-import renderStars from '../utils/renderStars';
+// import renderStars from '../utils/renderStars'; // Unused import, can be removed if not needed
 
 // Import images
 import grilledCheese from '../assets/Images/grilled_cheese.png';
-
-// Font Awesome can be included globally in index.html or imported here if needed
-// If not globally included, uncomment the line below:
-// import '@fortawesome/fontawesome-free/css/all.min.css';
 
 function FoodItemDetails() {
   return (
     <div className="container">
       {/* Back Navigation */}
       <div className="nav-back">
-        &lt; Ferris Booth Commons
+        <Link to="/dining-hall" className="back-link">&lt; Ferris Booth Commons</Link>
       </div>
 
       {/* Food Image */}
@@ -27,7 +26,10 @@ function FoodItemDetails() {
       <div className="food-details">
         <div className="food-title-container">
           <div className="food-title">Grilled Cheese</div>
-          <button className="review-button">Review</button>
+          {/* Wrap the Review button with Link */}
+          <Link to="/review" className="review-link">
+            <button className="review-button">Review</button>
+          </Link>
         </div>
         <div className="ratings">
           <span className="stars">
@@ -100,7 +102,7 @@ function FoodItemDetails() {
       <hr className="divider" />
 
       {/* Navigation Bar */}
-        <Footer />  
+      <Footer />
     </div>
   );
 }

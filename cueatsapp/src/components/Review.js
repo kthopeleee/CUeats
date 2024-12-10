@@ -1,4 +1,7 @@
+// src/components/Review.js
+
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link
 import './Review.css';
 import Footer from './Footer';
 // Import icons if needed, or rely on the global Font Awesome link
@@ -8,7 +11,10 @@ function Review() {
     <div className="container">
       {/* Header */}
       <header>
-        <a href="#" className="back"><i className="fa-solid fa-angle-left"></i> Review</a>
+        {/* Replace <a> with <Link> for back navigation */}
+        <Link to="/food-item-details" className="back">
+          <i className="fa-solid fa-angle-left"></i> Review
+        </Link>
       </header>
 
       {/* Page Content */}
@@ -47,7 +53,7 @@ function Review() {
       </div>
 
       {/* Footer */}
-        <Footer />  
+      <Footer />  
     </div>
   );
 }

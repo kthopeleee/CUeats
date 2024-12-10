@@ -6,18 +6,15 @@
   box-sizing: border-box;
 }
 
-.search-container {
-  position: relative;
-  width: 393px;
-  height: 852px;
-  background: #FFFFFF;
-  border-radius: 20px;
-  overflow: hidden;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  font-family: 'Inter', sans-serif;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+.container {
+    position: relative;
+    width: 375px;
+    height: 812px; /* iPhone frame height */
+    background: #FFFFFF;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 /* The header-section now holds logo and search bar */
