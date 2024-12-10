@@ -15,13 +15,8 @@ import Burger from '../assets/Images/Burger.jpg';
 import Salmon from '../assets/Images/Salmon.png';
 import Tacos from '../assets/Images/Tacos.jpg';
 
-// Import dining hall images
-import Ferris from '../assets/Dining_Hall_Images/Ferris.png';
-import JohnJay from '../assets/Dining_Hall_Images/JohnJay.png';
-import FacultyHouse from '../assets/Dining_Hall_Images/FacultyHouse.png';
-import ChefMikes from '../assets/Dining_Hall_Images/ChefMikes.png';
-import Hewitt from '../assets/Dining_Hall_Images/Hewitt.png';
-import GraceDodge from '../assets/Dining_Hall_Images/GraceDodge.png';
+// Import dining hall data
+import diningHalls from '../data/diningHalls.json';
 
 function HomePage() {
   return (
@@ -65,53 +60,27 @@ function HomePage() {
 
       {/* Dining Hall Section */}
       <div className="dining-section">
-        {/* Ferris Booth - Make this clickable */}
-        <Link to="/dining-hall" className="dining-link">
-          <div className="dining-item">
-            <img src={Ferris} alt="Ferris Booth" />
-            <div className="dining-info">
-              <div className="title">Ferris Booth</div>
-              <div className="status">Open till 7:00 pm</div>
+        {diningHalls.map((hall) => (
+          <Link to={`/dining-hall/${hall.id}`} key={hall.id} className="dining-link">
+            <div className="dining-item">
+              <img
+                src={`/assets/Dining_Hall_Images/${hall.image}`}
+                alt={hall.name}
+                className="dining-image"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = '/assets/Dining_Hall_Images/default.png'; // Fallback image
+                }}
+              />
+              <div className="dining-info">
+                <div className="title">{hall.name}</div>
+                <div className={`status ${hall.isOpen ? 'open' : 'closed'}`}>
+                  {hall.isOpen ? `Open till ${hall.timesOpen.dinner[1]}` : 'Closed'}
+                </div>
+              </div>
             </div>
-          </div>
-        </Link>
-
-        {/* Other Dining Halls - Not clickable */}
-        <div className="dining-item">
-          <img src={JohnJay} alt="John Jay" />
-          <div className="dining-info">
-            <div className="title">John Jay</div>
-            <div className="status">Open till 7:00 pm</div>
-          </div>
-        </div>
-        <div className="dining-item">
-          <img src={FacultyHouse} alt="Faculty House" />
-          <div className="dining-info">
-            <div className="title">Faculty House</div>
-            <div className="status">Open till 3:00 pm</div>
-          </div>
-        </div>
-        <div className="dining-item">
-          <img src={ChefMikes} alt="Chef Mikes" />
-          <div className="dining-info">
-            <div className="title">Chef Mikes</div>
-            <div className="status closing">Closing soon at 6:00 pm</div>
-          </div>
-        </div>
-        <div className="dining-item">
-          <img src={Hewitt} alt="Hewitt" />
-          <div className="dining-info">
-            <div className="title">Hewitt</div>
-            <div className="status closed">Closed till 9:00 am</div>
-          </div>
-        </div>
-        <div className="dining-item">
-          <img src={GraceDodge} alt="Grace Dodge" />
-          <div className="dining-info">
-            <div className="title">Grace Dodge</div>
-            <div className="status closed">Closed till 10:00 am</div>
-          </div>
-        </div>
+          </Link>
+        ))}
       </div>
 
       {/* Footer */}
