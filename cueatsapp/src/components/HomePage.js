@@ -3,7 +3,6 @@ import './HomePage.css';
 import Footer from './Footer';
 
 // Import images
-
 import logoimg from '../assets/NavBar_icons/logoimg.png';
 import magnifyingglass from '../assets/NavBar_icons/magnifyingglass.png';
 
@@ -108,7 +107,7 @@ function HomePage() {
       </div>
 
       {/* Footer */}
-        <Footer />
+      <Footer />
     </div>
   );
 }

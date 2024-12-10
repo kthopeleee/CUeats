@@ -15,7 +15,6 @@ body {
     background: #FFFFFF;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
 }

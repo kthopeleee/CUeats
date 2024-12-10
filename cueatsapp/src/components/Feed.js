@@ -1,10 +1,10 @@
 import React from 'react';
 import './Feed.css';
 import Footer from './Footer';
+
 // Import images
 import meatballSub from '../assets/Images/meatball_sub.png';
 import grilledCheese from '../assets/Images/grilled_cheese.png';
-
 
 function Feed() {
   return (
@@ -14,6 +14,7 @@ function Feed() {
         <span className="time">10:01</span>
         <span className="icons">
           <i className="fa-solid fa-battery-full"></i>
+          {/* Add other status icons as needed */}
         </span>
       </div>
 
@@ -48,7 +49,7 @@ function Feed() {
             </span>
           </div>
           <div className="content">
-            <img src={meatballSub} alt="Meatball Sub Photo" />
+            <img src={meatballSub} alt="Meatball Sub" />
             <p>Might've looked good at first but turned out to be wet and soggy.</p>
           </div>
           <div className="location-time">
@@ -68,7 +69,6 @@ function Feed() {
               <i className="fa-regular fa-star"></i>
             </span>
             <span className="actions">
-              {/* If you have image or data for "Fusion Special", add it similarly */}
               <i className="fa-solid fa-heart"></i>
               <a href="#"><i className="fa-solid fa-share-nodes"></i></a>
             </span>
@@ -98,7 +98,7 @@ function Feed() {
             </span>
           </div>
           <div className="content">
-            <img src={grilledCheese} alt="Grilled Cheese Photo" />
+            <img src={grilledCheese} alt="Grilled Cheese" />
             <p>the most elite meal at columbia. i would eat this every day if i could. never once have i been
               disappointed by the grilled cheese... <a href="#">Read more</a></p>
           </div>
@@ -133,8 +133,8 @@ function Feed() {
         </div>
       </div>
 
-      {/* Bottom Navigation */}
-        <Footer />  
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
