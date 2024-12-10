@@ -3,17 +3,23 @@ import './App.css';
 import HomePage from './components/HomePage';
 import FoodItemDetails from './components/FoodItemDetails';
 import DiningHall from './components/DiningHall';
+import Feed from './components/Feed';
+import Review from './components/Review';
 
 function App() {
   return (
     <div>
-      {/* Display one of the pages at a time */}
-      <FoodItemDetails />
-      {/*  <HomePage />,       <FoodItemDetails />
- <FoodItemDetails /> */}
-     
-      {/* <DiningHall /> ';
- */}
+      {/* Work on Buttons */}
+      <Review /> 
+      {/* <Review /> */}
+      {/*  <HomePage />,   */}      
+      {/* <FoodItemDetails /> */}
+      {/* <DiningHall /> */}
+      {/* <Feed /> */}  
+      {/* <Review /> */}
+      {/* <FoodItemDetails /> */}
+      {/* <FoodItemDetails /> */}
+      {/* <DiningHall /> */}
     </div>
   );
 }
