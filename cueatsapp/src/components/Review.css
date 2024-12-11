@@ -19,7 +19,7 @@ body {
 }
 
 /* Review Container */
-.review-container {
+.container {
     position: relative;
     width: 375px;
     height: 812px;
@@ -29,12 +29,12 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
+    padding-top: 30px;
 }
 
 /* Header */
 .review-header {
     padding: 15px 20px;
-    border-bottom: 1px solid #E0E0E0;
 }
 
 .back-button {
@@ -54,14 +54,14 @@ body {
 /* Review Form Container */
 .review-form-container {
     flex: 1;
-    padding: 20px;
+    padding: 0 20px 20px 20px;
     overflow-y: auto;
 }
 
 .form-title {
     font-family: 'Noto Serif', serif;
     font-size: 24px;
-    color: #003373;
+    font-weight: 300;
     margin-bottom: 20px;
     text-align: center;
 }
@@ -94,7 +94,7 @@ body {
 
 .stars-input i {
     font-size: 28px;
-    color: #FFD700; /* Gold color for filled stars */
+    color: #003373; /* Gold color for filled stars */
     cursor: pointer;
     transition: color 0.2s;
 }
@@ -105,7 +105,7 @@ body {
 
 .stars-input i:hover,
 .stars-input i.active {
-    color: #FFC107;
+    color: #003373;
 }
 
 /* Impression Tags */

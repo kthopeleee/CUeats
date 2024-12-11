@@ -57,7 +57,7 @@ function Review() {
   };
 
   return (
-    <div className="review-container">
+    <div className="container">
       {/* Header */}
       <header className="review-header">
         <Link to={`/food-item-details/${foodItemId}`} className="back-button">
@@ -67,7 +67,7 @@ function Review() {
 
       {/* Review Form */}
       <div className="review-form-container">
-        <h2 className="form-title">Submit a review</h2>
+        <h2 className="form-title">Submit review</h2>
         <form onSubmit={handleSubmit} className="review-form">
           {/* Rating Section */}
           <div className="form-group">
