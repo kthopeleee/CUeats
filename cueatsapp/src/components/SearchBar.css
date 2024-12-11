@@ -1,9 +1,11 @@
-/* src/components/SearchBar.css */
-
 .search-bar {
     position: relative;
     width: 100%;
     margin-bottom: 20px; /* Adjust as needed */
+  }
+
+  .search-bar:focus-within {
+    border-color: #003373;
   }
   
   .search-bar input {
@@ -25,8 +27,8 @@
   }
   
   .search-icon img {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
   }
   
   .dropdown {

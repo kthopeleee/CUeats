@@ -3,9 +3,9 @@ import { Link, useLocation } from 'react-router-dom';
 import './Footer.css';
 
 // Import footer icons
-import homeIcon from '../assets/NavBar_icons/home.png';
-import reviewIcon from '../assets/NavBar_icons/review.png';
-import feedIcon from '../assets/NavBar_icons/feed.png';
+import homeIcon from '../assets/NavBar_icons/home.svg';
+import reviewIcon from '../assets/NavBar_icons/review.svg';
+import feedIcon from '../assets/NavBar_icons/feed.svg';
 
 function Footer() {
   const location = useLocation();

@@ -14,6 +14,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     font-size: 12px;
     font-family: 'Inter', sans-serif;
 }
@@ -23,4 +24,13 @@
     height: 30px;
     background: white;
     margin-bottom: 5px;
+}
+
+.footer-link.active div {
+    font-weight: bold;
+  }
+
+a {
+    text-decoration: none;
+    color: inherit;
 }

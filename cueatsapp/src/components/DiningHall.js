@@ -1,11 +1,10 @@
-// src/components/DiningHall.js
-
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom'; // Import useParams
 import './DiningHall.css';
 import Footer from './Footer';
 
-// Import custom hooks
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 import useDiningHall from '../hooks/useDiningHall';
 import useFoodItems from '../hooks/useFoodItems';
 import useReviews from '../hooks/useReviews';
@@ -167,8 +166,10 @@ function DiningHall() {
                 {itemReviews.length > 0 && (
                   <div className="review">
                     <span className="comment-icon">💬</span>
-                    “{itemReviews[itemReviews.length - 1].text.substring(0, 50)}...”
-                    <span className="read-more">Read more</span>
+                    <span>
+                      “{itemReviews[itemReviews.length - 1].text.substring(0, 65)}...”
+                      <span className="read-more">Read more</span>
+                    </span>
                   </div>
                 )}
               </div>

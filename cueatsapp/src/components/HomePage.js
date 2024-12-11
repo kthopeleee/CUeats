@@ -1,5 +1,3 @@
-// src/components/HomePage.js
-
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'; // Import Link
 import './HomePage.css';
@@ -7,8 +5,8 @@ import Footer from './Footer';
 import SearchBar from './SearchBar'; // Import the SearchBar component
 
 // Import images
-import logoimg from '../assets/NavBar_icons/logoimg.png';
-import magnifyingglass from '../assets/NavBar_icons/magnifyingglass.png';
+import logoimg from '../assets/NavBar_icons/logo.svg';
+import magnifyingglass from '../assets/NavBar_icons/magnifyingglass.svg';
 
 function HomePage() {
   const [diningHalls, setDiningHalls] = useState([]);

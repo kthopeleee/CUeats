@@ -90,7 +90,7 @@ function FoodItemDetails() {
             ))}
           </span>
           <span className="rating-score">{averageRating}</span>
-          <span className="total-ratings">({totalRatings} ratings)</span>
+          <span className="total-ratings">&nbsp;({totalRatings} ratings)</span>
         </div>
         <div className="food-tags">
           <p>Contains <span className="tag">{foodItem.allergies.join(', ')}</span></p>
@@ -100,45 +100,46 @@ function FoodItemDetails() {
 
       <hr className="divider" />
 
-      {/* Reviews Section */}
-      <div className="reviews-header">
-        Reviews ({totalRatings})
-      </div>
-      <div className="sort-options">↑↓ Recent</div>
+      <div className="section">
+        {/* Reviews Section */}
+        <div className="reviews-header">
+          Reviews ({totalRatings})
+        </div>
+        <div className="sort-options">↑↓ Recent</div>
 
-      {/* Render Reviews */}
-      {reviews.length > 0 ? (
-        reviews.map((review) => (
-          <div key={review.id} className="review">
-            <div className="review-stars-container">
-              <div className="review-stars">
-                {Array.from({ length: 5 }, (_, idx) => (
-                  <i
-                    key={idx}
-                    className={
-                      idx < review.stars
-                        ? 'fa-solid fa-star'
-                        : 'fa-regular fa-star'
-                    }
-                  ></i>
-                ))}
-              </div>
+        {/* Render Reviews */}
+        {reviews.length > 0 ? (
+          reviews.map((review) => (
+            <div key={review.id} className="review-item">
               <div className="ratings-options">
-                <a href="#"><i className="fa-regular fa-heart"></i></a>
-                <a href="#"><i className="fa-solid fa-share-nodes"></i></a>
+                <span className="stars">
+                  {Array.from({ length: 5 }, (_, idx) => (
+                    <i
+                      key={idx}
+                      className={
+                        idx < review.stars
+                          ? 'fa-solid fa-star'
+                          : 'fa-regular fa-star'
+                      }
+                    ></i>
+                  ))}
+                </span>
+                <span className="actions">
+                    <i className="fa-regular fa-heart"></i>
+                    <i className="fa-solid fa-share-nodes"></i>
+                </span>
+              </div>
+              <div className="content">{review.text}</div>
+              <div className="location-time">
+              <span>{new Date(review.time).toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', month: '2-digit', day: '2-digit', year: 'numeric'})}</span>
               </div>
             </div>
-            <div className="review-text">{review.text}</div>
-            <div className="review-footer">
-              <span>{new Date(review.time).toLocaleString()}</span>
-            </div>
-          </div>
-        ))
-      ) : (
-        <p>No reviews yet. Be the first to review!</p>
-      )}
+          ))
+        ) : (
+          <p>No reviews yet. Be the first to review!</p>
+        )}
 
-      <hr className="divider" />
+      </div>
 
       {/* Footer */}
       <Footer />

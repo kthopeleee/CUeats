@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SearchBar.css';
-import magnifyingglass from '../assets/NavBar_icons/magnifyingglass.png';
+import magnifyingglass from '../assets/NavBar_icons/magnifyingglass.svg';
 
 function SearchBar({ foodItems, diningHalls }) {
   const [searchQuery, setSearchQuery] = useState('');

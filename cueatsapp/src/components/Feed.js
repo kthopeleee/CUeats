@@ -1,5 +1,3 @@
-// src/components/Feed.js
-
 import React, { useEffect, useState } from 'react';
 import './Feed.css';
 import Footer from './Footer';
@@ -102,14 +100,14 @@ function Feed() {
 
   return (
     <div className="container">
-      {/* Status Bar */}
+      {/*
       <div className="status-bar">
         <span className="time">10:01</span>
         <span className="icons">
           <i className="fa-solid fa-battery-full"></i>
-          {/* Add other status icons as needed */}
         </span>
       </div>
+      */}
 
       {/* Header */}
       <div className="header">
@@ -182,7 +180,7 @@ function Feed() {
               </div>
               <div className="location-time">
                 <span>{diningHalls.find((hall) => hall.id === foodItem.diningHallId)?.name}</span>
-                <span>{new Date(review.time).toLocaleString()}</span>
+                <span>{new Date(review.time).toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', month: '2-digit', day: '2-digit', year: 'numeric'})}</span>
               </div>
             </div>
           );

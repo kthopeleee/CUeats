@@ -61,17 +61,17 @@ function Review() {
       {/* Header */}
       <header className="review-header">
         <Link to={`/food-item-details/${foodItemId}`} className="back-button">
-          <i className="fa-solid fa-angle-left"></i> Back to Review
+           &lt; Review
         </Link>
       </header>
 
       {/* Review Form */}
       <div className="review-form-container">
-        <h2 className="form-title">Submit Your Review</h2>
+        <h2 className="form-title">Submit a review</h2>
         <form onSubmit={handleSubmit} className="review-form">
           {/* Rating Section */}
           <div className="form-group">
-            <label className="form-label">Rating:</label>
+            <label className="form-label">Rating</label>
             <div className="stars-input">
               {Array.from({ length: 5 }, (_, idx) => (
                 <i
@@ -91,7 +91,7 @@ function Review() {
 
           {/* Impressions Section */}
           <div className="form-group">
-            <label className="form-label">Impressions:</label>
+            <label className="form-label">Impressions</label>
             <div className="impression-tags">
               {impressionOptions.map((impression) => (
                 <button
@@ -108,7 +108,7 @@ function Review() {
 
           {/* Review Text Section */}
           <div className="form-group">
-            <label className="form-label">Review:</label>
+            {/*<label className="form-label">Review:</label>*/}
             <textarea
               value={text}
               onChange={(e) => setText(e.target.value)}
@@ -125,7 +125,7 @@ function Review() {
 
           {/* Submit Button */}
           <button type="submit" className="submit-review-button" disabled={loading}>
-            {loading ? 'Submitting...' : 'Submit Review'}
+            {loading ? 'Submitting...' : 'Review'}
           </button>
 
           {/* Error Message */}

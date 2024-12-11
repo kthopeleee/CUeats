@@ -1,5 +1,3 @@
-// src/components/SearchPage.js
-
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom'; // Import Link if needed
 import './SearchPage.css';
@@ -8,10 +6,7 @@ import Footer from './Footer';
 import SearchBar from './SearchBar'; // Import the SearchBar component
 
 // Logo and Nav Icons
-import Logo from '../assets/NavBar_icons/logoimg.png';
-import HomeIcon from '../assets/NavBar_icons/home.png';
-import ReviewIcon from '../assets/NavBar_icons/review.png';
-import FeedIcon from '../assets/NavBar_icons/feed.png';
+import Logo from '../assets/NavBar_icons/logo.svg';
 
 // Keyboard image
 import KeyboardImage from '../assets/Keyboard/Keyboard.png';
@@ -60,8 +55,7 @@ function SearchPage() {
 
   return (
     <div className="container">
-      {/* Use the Header component */}
-      <Header />
+      {/*<Header />*/}
 
       {/* Header with Logo and Search */}
       <div className="header-section">
