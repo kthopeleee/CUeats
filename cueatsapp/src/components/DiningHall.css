@@ -99,6 +99,10 @@ body {
 .tab-button.active {
   background-color: #003373;
   color: #FFFFFF;
+
+  .tab-time {
+    color: #ffffff;
+  }
 }
 
 .tab-button .tab-time {
