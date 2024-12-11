@@ -1,0 +1,22 @@
+.status-bar {
+    height: 44px;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+  }
+  
+  .status-left, .status-right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .status-icon {
+    height: 16px;
+    margin: 0 2px;
+  }
+  
+  .small-icon {
+    height: 16px;
+  }
