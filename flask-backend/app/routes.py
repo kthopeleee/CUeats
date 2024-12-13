@@ -4,9 +4,9 @@ from flask import Blueprint, request, jsonify
 from . import db
 from .models import Review
 
-bp = Blueprint('api', __name__, url_prefix='/api')
+api = Blueprint('api', __name__)
 
-@bp.route('/reviews', methods=['POST'])
+@api.route('/reviews', methods=['POST'])
 def add_review():
     data = request.get_json()
     
@@ -52,7 +52,7 @@ def add_review():
         db.session.rollback()
         return jsonify({'error': 'Failed to add review.'}), 500
 
-@bp.route('/reviews/<food_item_id>', methods=['GET'])
+@api.route('/reviews/<food_item_id>', methods=['GET'])
 def get_reviews(food_item_id):
     reviews = Review.query.filter_by(food_item_id=food_item_id).all()
     reviews_list = [review.to_dict() for review in reviews]

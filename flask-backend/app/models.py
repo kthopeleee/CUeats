@@ -22,3 +22,6 @@ class Review(db.Model):
             'impressions': self.impressions.split(',') if self.impressions else [],
             'time': self.time.isoformat()
         }
+
+    def __repr__(self):
+        return f"<Review {self.id}"
