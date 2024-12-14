@@ -4,14 +4,11 @@
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.1",
-<<<<<<< HEAD
-=======
     "@fortawesome/fontawesome-svg-core": "^6.7.1",
     "@fortawesome/free-regular-svg-icons": "^6.7.1",
     "@fortawesome/free-solid-svg-icons": "^6.7.1",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "axios": "^1.7.9",
->>>>>>> cd1e37787565748931a9ad5c2a8afb3ec9d16ffd
     "cra-template": "1.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
