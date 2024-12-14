@@ -9,7 +9,7 @@ function RatingReview({ rating, setRating }) {
       {[1, 2, 3, 4, 5].map((star) => (
         <span
           key={star}
-          className={`star ${rating >= star ? 'filled' : 'empty'}`}
+          className={`star fa ${rating >= star ? 'filled' : 'empty'}`}
           onClick={() => setRating(star)}
           onKeyPress={(e) => {
             if (e.key === 'Enter') setRating(star);
@@ -18,7 +18,7 @@ function RatingReview({ rating, setRating }) {
           tabIndex={0}
           aria-label={`${star} Star${star > 1 ? 's' : ''}`}
         >
-          ★
+          <i className="fa-solid fa-star"></i>
         </span>
       ))}
     </div>
