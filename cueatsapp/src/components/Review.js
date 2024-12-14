@@ -1,14 +1,15 @@
 // src/components/Review.js
 
 import React, { useState } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom'; // Import useParams and useNavigate
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import './Review.css';
 import Footer from './Footer';
-import { addReview } from '../services/reviewService'; // Assuming you have a service to handle adding reviews
+import { addReview } from '../services/reviewService';
+import RatingReview from './RatingReview'; // Ensure correct path
 
 function Review() {
-  const { foodItemId } = useParams(); // Get foodItemId from URL
-  const navigate = useNavigate(); // For navigation after submission
+  const { foodItemId } = useParams();
+  const navigate = useNavigate();
 
   const [stars, setStars] = useState(0);
   const [text, setText] = useState('');
@@ -38,7 +39,7 @@ function Review() {
     setError(null);
 
     const newReview = {
-      foodItemId,
+      food_item_id: foodItemId,
       stars,
       text,
       impressions,
@@ -46,11 +47,11 @@ function Review() {
     };
 
     try {
-      await addReview(newReview); // Implement this service to add review to your data source
+      await addReview(newReview);
       alert('Review submitted successfully!');
       navigate(`/food-item-details/${foodItemId}`);
     } catch (err) {
-      setError('Failed to submit review. Please try again.');
+      setError(err.message || 'Failed to submit review. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -71,22 +72,8 @@ function Review() {
         <form onSubmit={handleSubmit} className="review-form">
           {/* Rating Section */}
           <div className="form-group">
-            <label className="form-label">Rating</label>
-            <div className="stars-input">
-              {Array.from({ length: 5 }, (_, idx) => (
-                <i
-                  key={idx}
-                  className={idx < stars ? 'fa-solid fa-star active' : 'fa-regular fa-star'}
-                  onClick={() => setStars(idx + 1)}
-                  aria-label={`${idx + 1} Star`}
-                  role="button"
-                  tabIndex={0}
-                  onKeyPress={(e) => {
-                    if (e.key === 'Enter') setStars(idx + 1);
-                  }}
-                ></i>
-              ))}
-            </div>
+            <label className="form-label">Rating:</label>
+            <RatingReview rating={stars} setRating={setStars} />
           </div>
 
           {/* Impressions Section */}

@@ -1,0 +1,25 @@
+/* src/components/RatingReview.css */
+
+.rating-review {
+  display: flex;
+  gap: 8px;
+}
+
+.star {
+  cursor: pointer;
+  font-size: 35px;
+  transition: color 0.2s;
+}
+
+.star.filled {
+  color: gold;
+}
+
+.star.empty {
+  color: gray;
+}
+
+.star:focus {
+  outline: 2px solid #003373;
+  outline-offset: 2px;
+}
