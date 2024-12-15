@@ -59,7 +59,7 @@
       "timesOpen": {
         "breakfast": ["8:00 AM", "11:00 AM"],
         "lunch": ["11:00 AM", "5:00 PM"],
-        "dinner": ["5:00 PM", "8:00 PM"]
+        "dinner": ["5:00 PM", "6:00 PM"]
       },
       "isOpen": true,
       "foodItems": ["grilled-cheese", "waffles"]
@@ -75,7 +75,7 @@
         "dinner": ["5:00 PM", "8:00 PM"]
       },
       "isOpen": true,
-      "foodItems": ["honey-chicken-hewitt", "burger-hewitt"]
+      "foodItems": ["salmon-jj", "tacos-jj"]
     },
     {
       "id": "hewitt",
