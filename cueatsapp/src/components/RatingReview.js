@@ -9,7 +9,7 @@ function RatingReview({ rating, setRating }) {
       {[1, 2, 3, 4, 5].map((star) => (
         <span
           key={star}
-          className={`star fa ${rating >= star ? 'filled' : 'empty'}`}
+          className={`star ${rating >= star ? 'filled' : 'empty'}`}
           onClick={() => setRating(star)}
           onKeyPress={(e) => {
             if (e.key === 'Enter') setRating(star);

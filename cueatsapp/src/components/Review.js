@@ -35,6 +35,11 @@ function Review() {
       return;
     }
 
+    if (text.trim() === '') {
+      alert('Please enter your review.');
+      return;
+    }
+
     setLoading(true);
     setError(null);
 
@@ -68,7 +73,7 @@ function Review() {
 
       {/* Review Form */}
       <div className="review-form-container">
-        <h2 className="form-title">Submit review</h2>
+        <h2 className="form-title">Submit Review</h2>
         <form onSubmit={handleSubmit} className="review-form">
           {/* Rating Section */}
           <div className="form-group">
@@ -95,7 +100,6 @@ function Review() {
 
           {/* Review Text Section */}
           <div className="form-group">
-            {/*<label className="form-label">Review:</label>*/}
             <textarea
               value={text}
               onChange={(e) => setText(e.target.value)}
@@ -112,7 +116,7 @@ function Review() {
 
           {/* Submit Button */}
           <button type="submit" className="submit-review-button" disabled={loading}>
-            {loading ? 'Submitting...' : 'Review'}
+            {loading ? 'Submitting...' : 'Submit Review'}
           </button>
 
           {/* Error Message */}

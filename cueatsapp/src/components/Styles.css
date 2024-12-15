@@ -1,0 +1,1267 @@
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif&family=Inter:wght@400;500;700&display=swap');
+
+/* ================================
+   Reset and Base Styles
+   ================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* ================================
+   Common Containers
+   ================================= */
+
+/* .container is used in multiple components.
+   Ensure that in your HTML, containers are scoped appropriately
+   to prevent style conflicts. If necessary, rename classes to be unique.
+*/
+.container {
+    position: relative;
+    width: 375px;
+    height: 812px;
+    background: #FFFFFF;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ================================
+   DiningHall Component Styles
+   ================================= */
+
+.dining-hall-header {
+    padding: 20px;
+    border-bottom: 1px solid #E0E0E0;
+    position: relative;
+}
+
+.dining-hall-back-link {
+    font-size: 12px !important;
+    text-decoration: none;
+    font-weight: 500;
+    color: black !important;
+}
+
+.dining-hall-title {
+    font-family: 'Noto Serif', serif;
+    font-size: 28px;
+    color: #003373;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.dining-hall-subtitle {
+    font-size: 14px;
+    color: #30AC3E;
+    text-align: center;
+}
+
+.tabs {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    padding-bottom: 10px;
+    margin-top: 20px;
+    gap: 10px;
+    scroll-snap-type: x mandatory;
+}
+
+.tabs::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}
+
+.tab-button {
+    flex: 0 0 auto; /* Prevent buttons from shrinking */
+    padding: 8px 16px;
+    border: 1px solid #003373;
+    border-radius: 20px; /* Circular with curved edges */
+    background-color: #FFFFFF;
+    color: #003373;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    white-space: nowrap;
+    scroll-snap-align: center;
+    min-width: 80px; /* Minimum width for consistency */
+}
+
+.tab-button:hover {
+    background-color: #003373;
+    color: #FFFFFF;
+}
+
+.tab-button.active {
+    background-color: #003373;
+    color: #FFFFFF;
+}
+
+.tab-button .tab-time {
+    display: block;
+    font-size: 12px;
+    color: #555555;
+    margin-top: 4px;
+}
+
+/* Gradient Overlays for Scroll Indicators */
+.tabs::before,
+.tabs::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 20px;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.tabs::before {
+    left: 0;
+    background: linear-gradient(to right, #FFFFFF, rgba(255, 255, 255, 0));
+}
+
+.tabs::after {
+    right: 0;
+    background: linear-gradient(to left, #FFFFFF, rgba(255, 255, 255, 0));
+}
+
+.section.dining-hall-section {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    position: relative;
+    background-color: #F9F9F9;
+}
+
+.dining-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.dining-item {
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+}
+
+.dining-item:hover .dining-info .title {
+    text-decoration: underline;
+}
+
+.dining-item img {
+    width: 160px;
+    height: 105px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+.dining-info {
+    text-align: left;
+    font-size: 12px;
+}
+
+.dining-info .title {
+    font-size: 20px;
+    font-family: 'Noto Serif', serif;
+    margin-bottom: 2px;
+}
+
+.dining-info .status {
+    color: green;
+}
+
+.dining-info .closing {
+    color: #FFA500;
+}
+
+.dining-info .closed {
+    font-family: 'Inter', sans-serif; 
+    color: red;
+}
+
+/* ================================
+   Feed Component Styles
+   ================================= */
+
+.feed-header {
+    border-bottom: 1px solid #D9D9D9;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px 0 20px;
+}
+
+.feed-page-title {
+    text-align: center;
+    color: #003373;
+    margin-bottom: 1rem;
+    font-family: "Noto Serif", serif;
+    font-size: 24px;
+}
+
+.feed-filters {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    padding-bottom: 10px;
+}
+
+.feed-filters::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}
+
+.feed-filter-btn {
+    flex: 0 0 auto;
+    padding: 8px 16px;
+    margin-right: 10px;
+    border: 1px solid #CFCFCF;
+    border-radius: 20px;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 14px;
+    font-family: "Inter", sans-serif;
+}
+
+.feed-filter-btn:last-child {
+    margin-right: 0;
+}
+
+.feed-filter-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.feed-filter-btn.active {
+    background-color: #003373;
+    color: #ffffff;
+    border: none;
+}
+
+.feed-section {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px 20px 0 20px;
+    background-color: white;
+}
+
+.feed-review-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid #A1A1A4;
+    font-family: "Inter", sans-serif;
+}
+
+.feed-review-item h3 {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    font-family: "Noto Serif", serif;
+    font-size: 20px;
+}
+
+.feed-ratings-options {
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    margin-bottom: 0.5rem;
+    align-items: center;
+}
+
+.feed-stars i {
+    margin-right: 2px;
+    color: #003373 !important; /* Gold color for filled stars */
+}
+
+.feed-stars .fa-regular.fa-star {
+    color: #C0C0C0; /* Silver color for empty stars */
+}
+
+.feed-actions i {
+    margin-left: 10px;
+    color: #333333 !important;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.feed-actions i:hover {
+    color: #003373;
+}
+
+.feed-content {
+    margin: 0.5rem 0;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.feed-content img {
+    border-radius: 10px;
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+}
+
+.feed-content p {
+    font-size: 14px;
+    color: #333333;
+}
+
+.feed-content a {
+    text-decoration: none;
+    color: #75AADB;
+    font-weight: bold;
+}
+
+.feed-location-time {
+    display: flex !important;
+    justify-content: space-between !important;
+    font-weight: 100;
+    font-size: 12px;
+    color: #A1A1A4;
+    margin-top: 0.5rem;
+}
+
+.feed-load-more-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.feed-load-more-btn {
+    padding: 10px 20px;
+    background-color: #003373;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.feed-load-more-btn:hover {
+    background-color: #00224d;
+}
+
+.feed-no-reviews {
+    text-align: center;
+    color: #A1A1A4;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+/* ================================
+   FoodItemDetail Component Styles
+   ================================= */
+
+.food-item-detail-container {
+    position: relative;
+    width: 375px;
+    height: 812px;
+    background: #FFFFFF;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    font-family: 'Inter', sans-serif;
+}
+
+.food-item-detail-nav-back {
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #000000;
+    margin-bottom: 5px;
+}
+
+.food-image-container-detail {
+    margin: 0 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.food-image-detail {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.food-title-container-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 20px 10px 20px;
+}
+
+.food-title-detail {
+    font-family: 'Noto Serif', serif;
+    font-size: 22px;
+    color: #000;
+    margin: 0;
+}
+
+.review-button-detail {
+    background-color: #4e93d8;
+    color: white;
+    font-size: 14px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.review-button-detail:hover {
+    background-color: #357ab7;
+}
+
+.food-ratings {
+    display: flex;
+    align-items: center;
+    margin: 0 20px 10px;
+}
+
+.food-stars-detail i {
+    margin-right: 2px;
+    color: #FFD700; /* Gold color for filled stars */
+}
+
+.food-stars-detail .fa-regular.fa-star {
+    color: #C0C0C0; /* Silver color for empty stars */
+}
+
+.food-rating-score {
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+.food-tags-detail {
+    font-size: 14px;
+    color: #555555;
+    margin: 0 20px 10px;
+}
+
+.food-tags-detail .tag {
+    font-weight: bold;
+    color: #003373;
+}
+
+.food-item-detail-divider {
+    border: none;
+    border-top: 1px solid #D9D9D9;
+    margin: 15px 20px;
+}
+
+.food-item-detail-section {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px 20px 0 20px;
+    background-color: white;
+}
+
+.food-item-detail-reviews-header {
+    font-size: 20px;
+    font-family: 'Noto Serif', serif;
+}
+
+.food-item-detail-sort-options {
+    font-size: 12px;
+    color: #555555;
+    margin: 10px 0 0 0;
+}
+
+.food-item-detail-review-item {
+    padding: 20px 0;
+    border-bottom: 1px solid #D9d9d9;
+}
+
+.food-item-detail-ratings-options {
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    margin-bottom: 0.5rem;
+    align-items: center;
+}
+
+.food-item-detail-stars i {
+    margin-right: 2px;
+    color: #003373 !important; /* Gold color for filled stars */
+}
+
+.food-item-detail-stars .fa-regular.fa-star {
+    color: #C0C0C0; /* Silver color for empty stars */
+}
+
+.food-item-detail-actions i {
+    margin-left: 10px;
+    color: #333333 !important;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.food-item-detail-actions i:hover {
+    color: #003373;
+}
+
+.food-item-detail-content {
+    font-size: 14px;
+    color: #333333;
+}
+
+.food-item-detail-content a {
+    text-decoration: none;
+    color: #75AADB;
+    font-weight: bold;
+}
+
+.food-item-detail-location-time {
+    display: block;
+    text-align: right;
+    color: #A1A1A4;
+    margin-top: 0.5rem;
+}
+
+/* ================================
+   Footer Component Styles
+   ================================= */
+
+.footer-container {
+    position: sticky;
+    bottom: 0;
+    background: #FFFFFF;
+    border-top: 1px solid #DDD;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    z-index: 10;
+}
+
+.footer-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+}
+
+.footer-icon {
+    width: 30px;
+    height: 30px;
+    background: white;
+    margin-bottom: 5px;
+}
+
+.footer-link.active div {
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ================================
+   Header Component Styles
+   ================================= */
+
+.status-bar {
+    height: 44px;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.status-left, .status-right {
+    display: flex;
+    align-items: center;
+}
+
+.status-icon {
+    height: 16px;
+    margin: 0 2px;
+}
+
+.small-icon {
+    height: 16px;
+}
+
+/* ================================
+   HomePage Component Styles
+   ================================= */
+
+.homepage-container {
+    position: relative;
+    width: 375px;
+    height: 812px; /* iPhone frame height */
+    background: #FFFFFF;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.homepage-header {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 10;
+    padding: 15px 20px 0 20px;
+}
+
+.homepage-logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.homepage-logo-icon {
+    width: 25px;
+    height: 25px;
+}
+
+.homepage-logo-text {
+    font-family: 'Noto Serif', serif;
+    font-size: 32px;
+    font-weight: bold;
+    color: #003373;
+}
+
+.homepage-search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    background: rgba(250, 250, 250, 0.93);
+    border: 1px solid #003373;
+    border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+
+.homepage-search-icon img {
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+
+.homepage-search-input {
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    font-size: 14px;
+    color: #003373;
+}
+
+.homepage-trending {
+    font-size: 20px;
+    font-family: 'Noto Serif', serif;
+    margin: 10px 0 0px 0; 
+}
+
+.homepage-horizontal-scroll {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 10px 0;
+}
+
+.homepage-horizontal-scroll .image-box {
+    flex: none;
+    text-align: center;
+}
+
+.homepage-horizontal-scroll img {
+    width: 100px;
+    height: 70px;
+    border-radius: 10px;
+}
+
+.homepage-horizontal-scroll .item-title {
+    font-size: 12px;
+    margin-top: 0px;
+}
+
+.homepage-divider {
+    width: 90%;
+    height: 2px;
+    background-color: #DDD;
+    margin: 0px auto;
+}
+
+.homepage-dining-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 20px;
+    overflow-y: auto;
+    flex-grow: 1;
+    text-decoration: none;
+}
+
+.homepage-dining-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.homepage-dining-item {
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+}
+
+.homepage-dining-item:hover .dining-info .title {
+    text-decoration: underline;
+}
+
+.homepage-dining-item img {
+    width: 160px;
+    height: 105px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+.homepage-dining-info {
+    text-align: left;
+    font-size: 12px;
+}
+
+.homepage-dining-info .title {
+    font-size: 20px;
+    font-family: 'Noto Serif', serif;
+    margin-bottom: 2px;
+}
+
+.homepage-dining-info .status {
+    color: green;
+}
+
+.homepage-dining-info .closing {
+    color: #FFA500;
+}
+
+.homepage-dining-info .closed {
+    font-family: 'Inter', sans-serif; 
+    color: red;
+}
+
+.homepage-footer {
+    position: sticky;
+    bottom: 0;
+    background: #FFFFFF;
+    border-top: 1px solid #DDD;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    z-index: 10;
+}
+
+.homepage-footer-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+}
+
+.homepage-footer-icon {
+    width: 30px;
+    height: 30px;
+    background: white;
+    margin-bottom: 5px;
+}
+
+.homepage-footer-link.active div {
+    font-weight: bold;
+}
+
+/* ================================
+   RatingReview Component Styles
+   ================================= */
+
+.rating-review {
+    display: flex;
+    gap: 10px;
+}
+
+.rating-review .star {
+    cursor: pointer;
+    font-size: 28px;
+    transition: color 0.2s;
+}
+
+.rating-review .star.filled {
+    color: #003373;
+}
+
+.rating-review .star.empty {
+    color: #c0c0c0;
+}
+
+/* ================================
+   Review Component Styles
+   ================================= */
+
+.review-container {
+    position: relative;
+    width: 375px;
+    height: 812px;
+    background: #FFFFFF;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+}
+
+.review-header {
+    padding: 15px 20px;
+}
+
+.review-back-button {
+    color: #003373;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.review-back-button i {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.review-form-container {
+    flex: 1;
+    padding: 0 20px 20px 20px;
+    overflow-y: auto;
+}
+
+.review-form-title {
+    font-family: 'Noto Serif', serif;
+    font-size: 24px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.review-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.review-form-label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333333;
+}
+
+.review-stars-input {
+    display: flex;
+    gap: 8px;
+}
+
+.review-stars-input i {
+    font-size: 28px;
+    color: #003373;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.review-stars-input i.fa-regular.fa-star {
+    color: #C0C0C0;
+}
+
+.review-stars-input i:hover,
+.review-stars-input i.active {
+    color: #003373;
+}
+
+.review-impression-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.review-impression-tag {
+    padding: 8px 16px;
+    border: 1px solid #CFCFCF;
+    border-radius: 20px;
+    background-color: #f5f5f5;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.review-impression-tag:hover {
+    background-color: #e0e0e0;
+}
+
+.review-impression-tag.selected {
+    background-color: #003373;
+    color: #ffffff;
+    border: none;
+}
+
+.review-textarea {
+    width: 100%;
+    height: 120px;
+    padding: 12px 16px;
+    border: 1px solid #CFCFCF;
+    border-radius: 10px;
+    resize: vertical;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.3s;
+}
+
+.review-textarea:focus {
+    border-color: #003373;
+    outline: none;
+}
+
+.review-photo-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    background-color: #f5f5f5;
+    border: none;
+    border-radius: 10px;
+    color: #333333;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.review-photo-input:hover {
+    background-color: #e0e0e0;
+}
+
+.review-photo-input i {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.review-submit-button {
+    padding: 12px 0;
+    background-color: #003373;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.review-submit-button:hover {
+    background-color: #00224d;
+}
+
+.review-submit-button:disabled {
+    background-color: #a0a0a0;
+    cursor: not-allowed;
+}
+
+.review-error-message {
+    color: #ff4d4f;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* ================================
+   SearchBar Component Styles
+   ================================= */
+
+.search-bar-global {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px; /* Adjust as needed */
+}
+
+.search-bar-global:focus-within {
+    border-color: #003373;
+}
+
+.search-bar-global input {
+    width: 100%;
+    padding: 8px 40px 8px 40px; /* Adjust padding for search icon */
+    border: 1px solid #CFCFCF;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+}
+
+.search-bar-global .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    pointer-events: none; /* Allows clicks to pass through to input */
+}
+
+.search-bar-global .search-icon img {
+    width: 24px;
+    height: 24px;
+}
+
+.search-bar-global .search-button {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background-color: #003373;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+.search-bar-global .search-button:hover {
+    background-color: #00224d;
+}
+
+.search-bar-global .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #FFFFFF;
+    border: 1px solid #CFCFCF;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    max-height: 300px; /* Adjust as needed */
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar-global .dropdown-section {
+    padding: 10px 15px;
+}
+
+.search-bar-global .dropdown-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: #333333;
+    margin-bottom: 5px;
+}
+
+.search-bar-global .dropdown-item {
+    padding: 8px 0;
+    cursor: pointer;
+    font-size: 13px;
+    color: #555555;
+}
+
+.search-bar-global .dropdown-item:hover {
+    background-color: #F5F5F5;
+}
+
+@media (max-width: 600px) {
+    .search-bar-global .dropdown {
+        max-height: 200px;
+    }
+
+    .search-bar-global input {
+        padding: 8px 35px 8px 35px; /* Adjust padding for smaller screens */
+    }
+
+    .search-bar-global .search-icon img {
+        width: 18px;
+        height: 18px;
+    }
+
+    .feed-filter-btn, .tab-button, .homepage-filter-btn {
+        font-size: 13px;
+    }
+
+    .tab-time, .dropdown-title {
+        font-size: 11px;
+    }
+
+    .dining-info .title, .food-title-detail {
+        font-size: 18px;
+    }
+
+    /* Add more responsive adjustments as needed */
+}
+
+/* ================================
+   SearchPage Component Styles
+   ================================= */
+
+.search-page-container {
+    position: relative;
+    width: 375px;
+    height: 812px; /* iPhone frame height */
+    background: #FFFFFF;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-page-header-section {
+    padding: 10px 20px;
+    border-bottom: 1px solid #D9D9D9;
+    background: #FFFFFF;
+}
+
+.search-page-logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.search-page-logo-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.search-page-logo-text {
+    font-family: 'Noto Serif', serif;
+    font-size: 24px;
+    color: #003373;
+}
+
+.search-page-search-bar {
+    width: 100%;
+    background: #fff;
+    border: 1px solid #CFCFCF;
+    border-radius: 8px;
+    padding: 5px 10px;
+}
+
+.search-page-search-input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: #333;
+    font-family: 'Inter', sans-serif;
+}
+
+.main-content-search-page {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.section-title-search-page {
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 18px;
+    margin-bottom: 10px;
+    color: #000000;
+}
+
+.trending-grid-search-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 20px;
+    margin-bottom: 30px;
+}
+
+.dish-item-search-page {
+    display: flex;
+    flex-direction: column;
+}
+
+.dish-name-search-page {
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+    margin-bottom: 2px;
+}
+
+.dish-hall-search-page {
+    font-size: 10px;
+    line-height: 12px;
+    color: #000000;
+}
+
+.halls-grid-search-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 20px;
+    column-gap: 20px;
+}
+
+.hall-item-search-page {
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+}
+
+.search-page-footer {
+    border-top: 1px solid #D9D9D9;
+    height: 60px;
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+/* ================================
+   Additional Component Styles
+   ================================= */
+
+/* RatingReview Component Specific Styles */
+.rating-review .star {
+    cursor: pointer;
+    font-size: 28px;
+    transition: color 0.2s;
+}
+
+.rating-review .star.filled {
+    color: #003373;
+}
+
+.rating-review .star.empty {
+    color: #c0c0c0;
+}
+
+/* ================================
+   Responsive Adjustments
+   ================================= */
+
+/* Add any additional responsive styles here */

@@ -1,83 +1,111 @@
-import React, { useEffect, useState } from 'react';
+// src/components/Feed.js
+
+import React, { useEffect, useState, useMemo } from 'react';
 import './Feed.css';
 import Footer from './Footer';
-import { Link } from 'react-router-dom'; // Import Link for navigation
+import { Link } from 'react-router-dom';
+import useReviews from '../hooks/useReviews';
+import useFoodItems from '../hooks/useFoodItems';
+import useDiningHall from '../hooks/useDiningHall';
 
 function Feed() {
   const [diningHalls, setDiningHalls] = useState([]);
   const [foodItems, setFoodItems] = useState([]);
-  const [reviews, setReviews] = useState([]);
-  const [filteredReviews, setFilteredReviews] = useState([]);
   const [selectedHall, setSelectedHall] = useState('All');
-  const [visibleCount, setVisibleCount] = useState(5); // Number of reviews visible initially
+  const [visibleCount, setVisibleCount] = useState(5);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch data on component mount
+  // Fetch Dining Halls
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDiningHalls = async () => {
       try {
-        // Fetch Dining Halls
-        const diningHallsResponse = await fetch('/data/diningHalls.json');
-        if (!diningHallsResponse.ok) {
+        const response = await fetch('/data/diningHalls.json');
+        if (!response.ok) {
           throw new Error('Failed to fetch dining halls');
         }
-        const diningHallsData = await diningHallsResponse.json();
-        setDiningHalls(diningHallsData);
-
-        // Fetch Food Items
-        const foodItemsResponse = await fetch('/data/foodItems.json');
-        if (!foodItemsResponse.ok) {
-          throw new Error('Failed to fetch food items');
-        }
-        const foodItemsData = await foodItemsResponse.json();
-        setFoodItems(foodItemsData);
-
-        // Fetch Reviews
-        const reviewsResponse = await fetch('/data/reviews.json');
-        if (!reviewsResponse.ok) {
-          throw new Error('Failed to fetch reviews');
-        }
-        const reviewsData = await reviewsResponse.json();
-        setReviews(reviewsData);
-
-        setLoading(false);
+        const data = await response.json();
+        setDiningHalls(data);
       } catch (err) {
         setError(err.message);
-        setLoading(false);
       }
     };
 
-    fetchData();
+    fetchDiningHalls();
   }, []);
 
-  // Filter reviews based on selected dining hall
+  // Fetch Food Items
   useEffect(() => {
+    const fetchFoodItems = async () => {
+      try {
+        const response = await fetch('/data/foodItems.json');
+        if (!response.ok) {
+          throw new Error('Failed to fetch food items');
+        }
+        const data = await response.json();
+        setFoodItems(data);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchFoodItems();
+  }, []);
+
+  // Memoize foodItemIds to prevent unnecessary re-renders
+  const foodItemIds = useMemo(() => {
     if (selectedHall === 'All') {
-      // Sort all reviews by time descending
-      const sortedReviews = [...reviews].sort((a, b) => new Date(b.time) - new Date(a.time));
-      setFilteredReviews(sortedReviews);
-    } else {
-      // Find food items served at the selected dining hall
-      const foodIdsAtHall = foodItems
-        .filter((item) => item.diningHallId === selectedHall)
-        .map((item) => item.id);
-
-      // Filter reviews for those food items
-      const reviewsAtHall = reviews
-        .filter((review) => foodIdsAtHall.includes(review.foodItemId))
-        .sort((a, b) => new Date(b.time) - new Date(a.time));
-
-      setFilteredReviews(reviewsAtHall);
+      return foodItems.map((item) => item.id);
     }
+    return foodItems
+      .filter((item) => item.diningHallId === selectedHall)
+      .map((item) => item.id);
+  }, [foodItems, selectedHall]);
 
-    // Reset visible count when filter changes
-    setVisibleCount(5);
-  }, [selectedHall, reviews, foodItems]);
+  // Fetch Reviews using custom hook
+  const { reviews, loading: reviewsLoading, error: reviewsError } = useReviews(foodItemIds);
+
+  // Fetch Static Reviews from JSON
+  const [staticReviews, setStaticReviews] = useState([]);
+
+  useEffect(() => {
+    const fetchStaticReviews = async () => {
+      try {
+        const response = await fetch('/data/reviews.json');
+        if (!response.ok) {
+          throw new Error('Failed to fetch static reviews');
+        }
+        const data = await response.json();
+        setStaticReviews(data);
+      } catch (err) {
+        console.error(err.message);
+      }
+    };
+
+    fetchStaticReviews();
+  }, []);
+
+  // Combine Static and Dynamic Reviews
+  const combinedReviews = useMemo(() => [...staticReviews, ...reviews], [staticReviews, reviews]);
+
+  // Sort Reviews by Time Descending
+  const sortedReviews = useMemo(() => {
+    return combinedReviews.sort((a, b) => new Date(b.time) - new Date(a.time));
+  }, [combinedReviews]);
+
+  // Filter Reviews Based on Selected Dining Hall
+  const filteredReviews = useMemo(() => {
+    return sortedReviews.filter((review) => {
+      if (selectedHall === 'All') return true;
+      const foodItem = foodItems.find((item) => item.id === review.food_item_id);
+      return foodItem && foodItem.diningHallId === selectedHall;
+    });
+  }, [sortedReviews, selectedHall, foodItems]);
 
   // Handle filter tab click
   const handleFilterClick = (hallId) => {
     setSelectedHall(hallId);
+    setVisibleCount(5); // Reset visible count on filter change
   };
 
   // Handle "Load More" button click
@@ -85,30 +113,16 @@ function Feed() {
     setVisibleCount((prev) => prev + 5);
   };
 
-  // Helper function to get food item details
-  const getFoodItem = (foodItemId) => {
-    return foodItems.find((item) => item.id === foodItemId);
-  };
-
-  if (loading) {
+  if (loading || reviewsLoading) {
     return <div className="container">Loading...</div>;
   }
 
-  if (error) {
-    return <div className="container">Error: {error}</div>;
+  if (error || reviewsError) {
+    return <div className="container">Error: {error || reviewsError.message}</div>;
   }
 
   return (
     <div className="container">
-      {/*
-      <div className="status-bar">
-        <span className="time">10:01</span>
-        <span className="icons">
-          <i className="fa-solid fa-battery-full"></i>
-        </span>
-      </div>
-      */}
-
       {/* Header */}
       <div className="header">
         <h1 className="page-title">Feed</h1>
@@ -131,56 +145,52 @@ function Feed() {
         </div>
       </div>
 
-      {/* Section with reviews */}
+      {/* Reviews Section */}
       <div className="section">
         {filteredReviews.slice(0, visibleCount).map((review) => {
-          const foodItem = getFoodItem(review.foodItemId);
-          if (!foodItem) return null; // Skip if food item not found
+          const foodItem = foodItems.find((item) => item.id === review.food_item_id);
+          const diningHall = diningHalls.find((hall) => hall.id === (foodItem ? foodItem.diningHallId : null));
+
+          if (!foodItem || !diningHall) return null; // Skip if data is missing
 
           return (
-            <div key={review.id} className="review-item">
-              <h3>{foodItem.name}</h3>
-              <div className="ratings-options">
-                <span className="stars">
-                  {Array.from({ length: 5 }, (_, idx) => (
-                    <i
-                      key={idx}
-                      className={
-                        idx < Math.round(review.stars)
-                          ? 'fa-solid fa-star'
-                          : 'fa-regular fa-star'
-                      }
-                    ></i>
-                  ))}
-                </span>
-                <span className="actions">
-                  <i className="fa-regular fa-heart"></i>
-                  <i className="fa-solid fa-share-nodes"></i>
-                </span>
+            <div key={`${review.id}-${review.time}`} className="review-item">
+              <div className="review-header">
+                <img
+                  src={`/assets/Images/${foodItem.images[0]}`}
+                  alt={foodItem.name}
+                  className="review-food-image"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = '/assets/Images/default.png'; // Fallback image
+                  }}
+                />
+                <div className="review-info">
+                  <Link to={`/food-item-details/${foodItem.id}`} className="food-item-link">
+                    <h3 className="food-item-name">{foodItem.name}</h3>
+                  </Link>
+                  <p className="dining-hall-name">{diningHall.name}</p>
+                </div>
               </div>
-              <div className="content">
-                {foodItem.images && foodItem.images.length > 0 && (
-                  <img
-                    src={`/assets/Images/${foodItem.images[0]}`}
-                    alt={foodItem.name}
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = '/assets/Images/default.png'; // Fallback image
-                    }}
-                  />
-                )}
-                <p>
-                  {review.text.length > 100
-                    ? `${review.text.substring(0, 100)}... `
-                    : review.text}
-                  {review.text.length > 100 && (
-                    <Link to={`/food-item-details/${foodItem.id}`}>Read more</Link>
-                  )}
-                </p>
+              <div className="review-stars">
+                {Array.from({ length: 5 }, (_, idx) => (
+                  <i
+                    key={idx}
+                    className={
+                      idx < Math.round(review.stars)
+                        ? 'fa-solid fa-star'
+                        : 'fa-regular fa-star'
+                    }
+                  ></i>
+                ))}
+                <span className="star-rating-text">{review.stars.toFixed(1)} Stars</span>
               </div>
-              <div className="location-time">
-                <span>{diningHalls.find((hall) => hall.id === foodItem.diningHallId)?.name}</span>
-                <span>{new Date(review.time).toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', month: '2-digit', day: '2-digit', year: 'numeric'})}</span>
+              <p className="review-text">{review.text}</p>
+              <div className="review-footer">
+                <span className="review-time">{new Date(review.time).toLocaleString()}</span>
+                <span className="review-impressions">
+                  {review.impressions && review.impressions.length > 0 ? `Impressions: ${review.impressions.join(', ')}` : ''}
+                </span>
               </div>
             </div>
           );
@@ -197,7 +207,7 @@ function Feed() {
 
         {/* No Reviews Message */}
         {filteredReviews.length === 0 && (
-          <div className="no-reviews">No reviews available for this dining hall.</div>
+          <div className="no-reviews">No reviews available.</div>
         )}
       </div>
 
@@ -208,3 +218,10 @@ function Feed() {
 }
 
 export default Feed;
+
+// Helper function to calculate average rating
+const calculateAverageRating = (reviews) => {
+  if (reviews.length === 0) return 0;
+  const total = reviews.reduce((acc, review) => acc + review.stars, 0);
+  return total / reviews.length;
+};

@@ -1,6 +1,7 @@
 // src/hooks/useReviewsForFoodItem.js
 
 import { useEffect, useState } from 'react';
+import { getReviewsForFoodItem } from '../services/reviewService';
 
 const useReviewsForFoodItem = (foodItemId) => {
   const [reviews, setReviews] = useState([]);
@@ -10,13 +11,8 @@ const useReviewsForFoodItem = (foodItemId) => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await fetch('/data/reviews.json');
-        if (!response.ok) {
-          throw new Error('Failed to fetch reviews');
-        }
-        const data = await response.json();
-        const filteredReviews = data.filter((review) => review.foodItemId === foodItemId);
-        setReviews(filteredReviews);
+        const fetchedReviews = await getReviewsForFoodItem(foodItemId);
+        setReviews(fetchedReviews);
         setLoading(false);
       } catch (err) {
         setError(err);

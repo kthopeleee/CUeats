@@ -1,56 +1,49 @@
 // src/components/FoodItemDetails.js
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import './FoodItemDetails.css';
 import Footer from './Footer';
-
-// Import custom hooks
 import useFoodItem from '../hooks/useFoodItem';
 import useReviewsForFoodItem from '../hooks/useReviewsForFoodItem';
 
 function FoodItemDetails() {
-  const { foodItemId } = useParams(); // Get foodItemId from URL
+  const { foodItemId } = useParams();
   const { foodItem, loading: foodLoading, error: foodError } = useFoodItem(foodItemId);
   const { reviews, loading: reviewsLoading, error: reviewsError } = useReviewsForFoodItem(foodItemId);
 
+  // Combine static and dynamic reviews
+  const [staticReviews, setStaticReviews] = useState([]);
+
   useEffect(() => {
-    console.log('Food Item ID:', foodItemId);
-    console.log('Food Item Data:', foodItem);
-    console.log('Reviews:', reviews);
-  }, [foodItemId, foodItem, reviews]);
+    const fetchStaticReviews = async () => {
+      try {
+        const response = await fetch('/data/reviews.json');
+        if (!response.ok) throw new Error('Failed to fetch static reviews');
+        const data = await response.json();
+        setStaticReviews(data.filter((review) => review.food_item_id === foodItemId));
+      } catch (err) {
+        console.error(err.message);
+      }
+    };
+    fetchStaticReviews();
+  }, [foodItemId]);
 
-  if (foodLoading || reviewsLoading) {
-    return <div className="container">Loading...</div>;
-  }
+  const combinedReviews = [...staticReviews, ...reviews];
 
-  if (foodError) {
-    return <div className="container">Error: {foodError.message}</div>;
-  }
+  const sortedReviews = combinedReviews.sort((a, b) => new Date(b.time) - new Date(a.time));
 
-  if (reviewsError) {
-    return <div className="container">Error: {reviewsError.message}</div>;
-  }
-
-  if (!foodItem) {
-    return (
-      <div className="container">
-        <Link to="/" className="back-link">&lt; Home</Link>
-        <div className="error-message">Food item not found.</div>
-        <Footer />
-      </div>
-    );
-  }
-
-  // Calculate average rating and total ratings
-  const averageRating = foodItem.rating.toFixed(1);
-  const totalRatings = reviews.length;
+  if (foodLoading || reviewsLoading) return <div className="container">Loading...</div>;
+  if (foodError || reviewsError) return <div className="container">Error: {foodError?.message || reviewsError?.message}</div>;
+  if (!foodItem) return <div className="container">Food item not found.</div>;
 
   return (
     <div className="container">
       {/* Back Navigation */}
       <div className="nav-back">
-        <Link to={`/dining-hall/${foodItem.diningHallId}`} className="back-link">&lt; {foodItem.diningHallName}</Link>
+        <Link to={`/dining-hall/${foodItem.diningHallId}`} className="back-link">
+          &lt; {foodItem.diningHallName}
+        </Link>
       </div>
 
       {/* Food Image */}
@@ -62,7 +55,7 @@ function FoodItemDetails() {
           loading="lazy"
           onError={(e) => {
             e.target.onerror = null;
-            e.target.src = '/assets/Dining_Hall_Images/default.png'; // Fallback image
+            e.target.src = '/assets/Images/default.png'; // Fallback image
           }}
         />
       </div>
@@ -71,8 +64,9 @@ function FoodItemDetails() {
       <div className="food-details">
         <div className="food-title-container">
           <div className="food-title">{foodItem.name}</div>
-          {/* Wrap the Review button with Link */}
-          <Link to={`/review/${foodItem.id}`} className="review-link">
+
+          {/* Add Blue Review Button */}
+          <Link to={`/review/${foodItemId}`} className="review-button-link">
             <button className="review-button">Review</button>
           </Link>
         </div>
@@ -81,64 +75,54 @@ function FoodItemDetails() {
             {Array.from({ length: 5 }, (_, idx) => (
               <i
                 key={idx}
-                className={
-                  idx < Math.round(foodItem.rating)
-                    ? 'fa-solid fa-star'
-                    : 'fa-regular fa-star'
-                }
+                className={idx < Math.round(calculateAverageRating(combinedReviews)) ? 'fa-solid fa-star' : 'fa-regular fa-star'}
               ></i>
             ))}
           </span>
-          <span className="rating-score">{averageRating}</span>
-          <span className="total-ratings">&nbsp;({totalRatings} ratings)</span>
+          <span className="rating-score">{calculateAverageRating(combinedReviews).toFixed(1)}</span>
+          <span className="total-ratings">&nbsp;({combinedReviews.length} rating{combinedReviews.length !== 1 ? 's' : ''})</span>
         </div>
         <div className="food-tags">
-          <p>Contains <span className="tag">{foodItem.allergies.join(', ')}</span></p>
-          <p>Reviews mention <span className="tag">{foodItem.tags.join(', ')}</span></p>
+          <p>
+            Contains <span className="tag">{foodItem.allergies.join(', ')}</span>
+          </p>
+          <p>
+            Reviews mention <span className="tag">{foodItem.tags.join(', ')}</span>
+          </p>
         </div>
       </div>
 
       <hr className="divider" />
 
+      {/* Reviews Section */}
       <div className="section">
-        {/* Reviews Section */}
         <div className="reviews-header">
-          Reviews ({totalRatings})
+          <h2>Reviews ({combinedReviews.length})</h2>
         </div>
-        <div className="sort-options">↑↓ Recent</div>
-
-        {/* Render Reviews */}
-        {reviews.length > 0 ? (
-          reviews.map((review) => (
-            <div key={review.id} className="review-item">
-              <div className="ratings-options">
-                <span className="stars">
-                  {Array.from({ length: 5 }, (_, idx) => (
-                    <i
-                      key={idx}
-                      className={
-                        idx < review.stars
-                          ? 'fa-solid fa-star'
-                          : 'fa-regular fa-star'
-                      }
-                    ></i>
-                  ))}
-                </span>
-                <span className="actions">
-                    <i className="fa-regular fa-heart"></i>
-                    <i className="fa-solid fa-share-nodes"></i>
-                </span>
+        <div className="reviews-list">
+          {sortedReviews.map((review) => (
+            <div key={`${review.id}-${review.time}`} className="review-item">
+              <div className="review-stars">
+                {Array.from({ length: 5 }, (_, idx) => (
+                  <i
+                    key={idx}
+                    className={idx < Math.round(review.stars) ? 'fa-solid fa-star' : 'fa-regular fa-star'}
+                  ></i>
+                ))}
+                <span className="star-rating-text">{review.stars.toFixed(1)} Stars</span>
               </div>
-              <div className="content">{review.text}</div>
-              <div className="location-time">
-              <span>{new Date(review.time).toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', month: '2-digit', day: '2-digit', year: 'numeric'})}</span>
+              <p className="review-text">{review.text}</p>
+              {review.impressions && review.impressions.length > 0 && (
+                <div className="review-impressions">
+                  <strong>Impressions:</strong> {review.impressions.join(', ')}
+                </div>
+              )}
+              <div className="review-footer">
+                <span className="review-time">{new Date(review.time).toLocaleString()}</span>
               </div>
             </div>
-          ))
-        ) : (
-          <p>No reviews yet. Be the first to review!</p>
-        )}
-
+          ))}
+        </div>
       </div>
 
       {/* Footer */}
@@ -146,5 +130,12 @@ function FoodItemDetails() {
     </div>
   );
 }
+
+// Helper function to calculate average rating
+const calculateAverageRating = (reviews) => {
+  if (reviews.length === 0) return 0;
+  const total = reviews.reduce((acc, review) => acc + review.stars, 0);
+  return total / reviews.length;
+};
 
 export default FoodItemDetails;

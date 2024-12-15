@@ -1,40 +1,86 @@
-// cueatsapp/src/components/DiningHall.js
+// src/components/DiningHall.js
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import './DiningHall.css';
 import Footer from './Footer';
-
-import '@fortawesome/fontawesome-free/css/all.min.css';
-
 import useDiningHall from '../hooks/useDiningHall';
 import useFoodItems from '../hooks/useFoodItems';
 import useReviews from '../hooks/useReviews';
 
-import { parse, isAfter, isBefore, format } from 'date-fns';
-
 function DiningHall() {
   const { diningHallId } = useParams(); // Get diningHallId from URL
-  const { diningHall, loading: hallLoading, error: hallError } = useDiningHall(diningHallId);
-  const { foodItems, loading: foodLoading, error: foodError } = useFoodItems(diningHallId);
-  const foodItemIds = foodItems.map((item) => item.id);
-  const { reviews, loading: reviewsLoading, error: reviewsError } = useReviews(foodItemIds);
+  console.log('DiningHall ID:', diningHallId);
+  debugger;
 
-  // State for selected meal time filter
+  // Fetch dining hall data
+  const { diningHall, loading: hallLoading, error: hallError } = useDiningHall(diningHallId);
+  console.log('DiningHall Data:', diningHall);
+  debugger;
+
+  // Fetch food items
+  const { foodItems, loading: foodLoading, error: foodError } = useFoodItems(diningHallId);
+  console.log('Food Items:', foodItems);
+  debugger;
+
+  // Define selectedMeal state at the top level
   const [selectedMeal, setSelectedMeal] = useState('All');
+  console.log('Selected Meal:', selectedMeal);
+  debugger;
+
+  // Memoize foodItemIds to prevent unnecessary re-renders
+  const foodItemIds = useMemo(() => {
+    console.log('Memoizing foodItemIds');
+    return foodItems.map((item) => item.id);
+  }, [foodItems]);
+  console.log('Food Item IDs:', foodItemIds);
+  debugger;
+
+  // Fetch reviews
+  const { reviews, loading: reviewsLoading, error: reviewsError } = useReviews(foodItemIds);
+  console.log('Reviews:', reviews);
+  debugger;
 
   // State for dynamic closing/opening time
   const [currentStatus, setCurrentStatus] = useState({ message: '', isOpen: false });
+  console.log('Current Status:', currentStatus);
+  debugger;
+
+  // Combine static and dynamic reviews
+  const [staticReviews, setStaticReviews] = useState([]);
+  console.log('Static Reviews:', staticReviews);
+  debugger;
 
   useEffect(() => {
-    console.log('Dining Hall ID:', diningHallId);
-    console.log('Dining Hall Data:', diningHall);
-    console.log('Food Items:', foodItems);
-    console.log('Reviews:', reviews);
-  }, [diningHallId, diningHall, foodItems, reviews]);
+    console.log('Fetching static reviews');
+    const fetchStaticReviews = async () => {
+      try {
+        const response = await fetch('/data/reviews.json');
+        if (!response.ok) {
+          throw new Error('Failed to fetch static reviews');
+        }
+        const data = await response.json();
+        console.log('Fetched static reviews:', data);
+        setStaticReviews(data);
+      } catch (err) {
+        console.error(err.message);
+      }
+    };
+
+    fetchStaticReviews();
+  }, []);
+
+  // Combine static and dynamic reviews
+  const combinedReviews = useMemo(() => {
+    console.log('Combining static and dynamic reviews');
+    return [...staticReviews, ...reviews];
+  }, [staticReviews, reviews]);
+  console.log('Combined Reviews:', combinedReviews);
+  debugger;
 
   useEffect(() => {
     if (diningHall) {
+      console.log('Determining dining hall status');
       determineDiningHallStatus();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -50,15 +96,19 @@ function DiningHall() {
     // Iterate through meals to find current or next meal time
     for (let meal of mealOrder) {
       const [openTimeStr, closeTimeStr] = mealTimes[meal.toLowerCase()];
+      console.log(`Checking ${meal}: ${openTimeStr} - ${closeTimeStr}`);
 
       // Check if times are provided and valid
       if (!openTimeStr || !closeTimeStr) {
+        console.log(`${meal} times are not defined.`);
         continue; // Skip this meal if times are not defined
       }
 
       // Parse times
-      const openTime = parse(openTimeStr, 'h:mm a', now);
-      const closeTime = parse(closeTimeStr, 'h:mm a', now);
+      const openTime = parseTimeString(openTimeStr, now);
+      const closeTime = parseTimeString(closeTimeStr, now);
+
+      console.log(`Parsed ${meal} times: Open at ${openTime}, Close at ${closeTime}`);
 
       // Check if parsing was successful
       if (isNaN(openTime) || isNaN(closeTime)) {
@@ -66,50 +116,70 @@ function DiningHall() {
         continue; // Skip invalid times
       }
 
-      // Check if current time is before closeTime
-      if (isBefore(now, closeTime)) {
-        if (isAfter(now, openTime)) {
-          // Currently open for this meal
-          setCurrentStatus({
-            message: `Closes at ${format(closeTime, 'h:mm a')}`,
-            isOpen: true
-          });
-          return;
-        } else if (isBefore(now, openTime)) {
-          // Not yet open for this meal
-          setCurrentStatus({
-            message: `Opens at ${format(openTime, 'h:mm a')}`,
-            isOpen: false
-          });
-          return;
-        }
+      // Check if current time is within this meal time
+      if (now >= openTime && now <= closeTime) {
+        // Currently open for this meal
+        console.log(`${diningHall.name} is currently open for ${meal}.`);
+        setCurrentStatus({
+          message: `Closes at ${formatTime(closeTime)}`,
+          isOpen: true
+        });
+        return;
+      } else if (now < openTime) {
+        // Not yet open for this meal
+        console.log(`${diningHall.name} is not yet open for ${meal}.`);
+        setCurrentStatus({
+          message: `Opens at ${formatTime(openTime)}`,
+          isOpen: false
+        });
+        return;
       }
     }
 
     // If no current or next meal time is found, set to "Closed for the day"
+    console.log(`${diningHall.name} is closed for the day.`);
     setCurrentStatus({
       message: 'Closed for the day',
       isOpen: false
     });
   };
 
+  // Helper function to parse time strings
+  const parseTimeString = (timeStr, referenceDate) => {
+    // Expected format: 'h:mm a' e.g., '9:00 AM'
+    const [time, modifier] = timeStr.split(' ');
+    let [hours, minutes] = time.split(':').map(Number);
+
+    if (modifier === 'PM' && hours !== 12) {
+      hours += 12;
+    }
+    if (modifier === 'AM' && hours === 12) {
+      hours = 0;
+    }
+
+    const date = new Date(referenceDate);
+    date.setHours(hours, minutes, 0, 0);
+    return date;
+  };
+
+  // Helper function to format time
+  const formatTime = (date) => {
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  };
+
+  // Early rendering based on loading or error states
   if (hallLoading || foodLoading || reviewsLoading) {
+    console.log('Loading state detected.');
     return <div className="container">Loading...</div>;
   }
 
-  if (hallError) {
-    return <div className="container">Error: {hallError.message}</div>;
-  }
-
-  if (foodError) {
-    return <div className="container">Error: {foodError.message}</div>;
-  }
-
-  if (reviewsError) {
-    return <div className="container">Error: {reviewsError.message}</div>;
+  if (hallError || foodError || reviewsError) {
+    console.error('Error detected:', hallError?.message || foodError?.message || reviewsError?.message);
+    return <div className="container">Error: {hallError?.message || foodError?.message || reviewsError?.message}</div>;
   }
 
   if (!diningHall) {
+    console.warn('Dining hall not found.');
     return (
       <div className="container">
         <Link to="/" className="back-button">&lt; Home</Link>
@@ -121,7 +191,7 @@ function DiningHall() {
 
   // Function to get reviews for a specific food item
   const getReviewsForFoodItem = (foodItemId) => {
-    return reviews.filter((review) => review.foodItemId === foodItemId);
+    return combinedReviews.filter((review) => review.food_item_id === foodItemId);
   };
 
   // Function to filter dishes based on selected meal time
@@ -132,7 +202,9 @@ function DiningHall() {
     return foodItems.filter((item) => item.mealTime.includes(selectedMeal));
   };
 
-  const filteredFoodItems = getFilteredFoodItems();
+  const filteredFoodItems = useMemo(getFilteredFoodItems, [selectedMeal, foodItems]);
+  console.log('Filtered Food Items:', filteredFoodItems);
+  debugger;
 
   return (
     <div className="container">
@@ -196,7 +268,8 @@ function DiningHall() {
         {/* Iterate through filtered food items */}
         {filteredFoodItems.map((item) => {
           const itemReviews = getReviewsForFoodItem(item.id);
-          const ratingText = `${item.rating.toFixed(1)} (${itemReviews.length} rating${itemReviews.length !== 1 ? 's' : ''})`;
+          const averageRating = calculateAverageRating(itemReviews);
+          const ratingText = `${averageRating.toFixed(1)} (${itemReviews.length} rating${itemReviews.length !== 1 ? 's' : ''})`;
 
           return (
             <Link to={`/food-item-details/${item.id}`} key={item.id} className="dish-link">
@@ -205,13 +278,13 @@ function DiningHall() {
                   {item.images.map((img, idx) => (
                     <img
                       key={idx}
-                      src={`/assets/Images/${img}`} // Updated path
+                      src={`/assets/Images/${img}`} // Ensure images are correctly placed in public/assets/Images/
                       alt={item.name}
                       className="dish-image"
                       loading="lazy" // Enable lazy loading for performance
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = '/assets/Images/default.png'; // Updated fallback
+                        e.target.src = '/assets/Images/default.png'; // Fallback image
                       }}
                     />
                   ))}
@@ -222,7 +295,7 @@ function DiningHall() {
                     <i
                       key={idx}
                       className={
-                        idx < Math.round(item.rating)
+                        idx < Math.round(averageRating)
                           ? 'fa-solid fa-star'
                           : 'fa-regular fa-star'
                       }
@@ -230,15 +303,15 @@ function DiningHall() {
                   ))}
                   <span className="rating-text">{ratingText}</span>
                 </div>
-                <div className="dish-info-green">{item.station} until {diningHall.timesOpen.dinner[0]}</div>
+                <div className="dish-info-green">{item.station} until {diningHall.timesOpen.dinner[1]}</div>
                 <div className="dish-info">Contains {item.allergies.join(', ')}</div>
-                {/* Optionally display a snippet of the latest review */}
+                {/* Display latest review snippet */}
                 {itemReviews.length > 0 && (
                   <div className="review">
                     <span className="comment-icon">💬</span>
                     <span>
                       “{itemReviews[itemReviews.length - 1].text.substring(0, 65)}...”
-                      <span className="read-more">Read more</span>
+                      <Link to={`/food-item-details/${item.id}`} className="read-more">Read more</Link>
                     </span>
                   </div>
                 )}
@@ -260,3 +333,10 @@ function DiningHall() {
 }
 
 export default DiningHall;
+
+// Helper function to calculate average rating
+const calculateAverageRating = (reviews) => {
+  if (reviews.length === 0) return 0;
+  const total = reviews.reduce((acc, review) => acc + review.stars, 0);
+  return total / reviews.length;
+};
