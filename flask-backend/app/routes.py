@@ -8,17 +8,17 @@ from .models import Review
 api = Blueprint('api', __name__)
 
 
-@api.route('/api/reviews', methods=['GET'])
+@api.route('/reviews', methods=['GET'])
 def get_all_reviews():
     try:
-        reviews = Review.query.all()
+        reviews = Review.query.all()  # Query all reviews from the database
         reviews_data = [
             {
                 "id": review.id,
                 "foodItemId": review.food_item_id,
                 "stars": review.stars,
                 "text": review.text,
-                "time": review.time
+                "time": review.time.isoformat()  # Convert datetime to ISO format
             }
             for review in reviews
         ]
@@ -26,7 +26,8 @@ def get_all_reviews():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
     
-@api.route('reviews', methods=['POST'])
+
+@api.route('/reviews', methods=['POST'])
 def add_review():
     data = request.get_json()
     

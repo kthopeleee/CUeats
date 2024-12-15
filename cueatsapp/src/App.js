@@ -17,8 +17,7 @@ function App() {
     <ErrorBoundary>
     <Routes>
     <Route path="/" element={<HomePage />} /> {/* Correctly point HomePage here */}
-    <Route path="/feed" element={<Feed />} /> {/* New Route     
-      <Route path="/search" element={<SearchPage />} /> {/* Added SearchPage Route */}
+    <Route path="/feed" element={<Feed />} /> 
     <Route path="/search" element={<SearchPage />} />
 
       
