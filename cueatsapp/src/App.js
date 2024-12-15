@@ -9,6 +9,8 @@ import FoodItemDetails from './components/FoodItemDetails';
 import Review from './components/Review';
 import ErrorBoundary from './components/ErrorBoundary';
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Import Font Awesome if using npm
+import SearchPage from './components/SearchPage';
+
 
 function App() {
   return (
@@ -17,7 +19,8 @@ function App() {
     <Route path="/" element={<HomePage />} /> {/* Correctly point HomePage here */}
     <Route path="/feed" element={<Feed />} /> {/* New Route     
       <Route path="/search" element={<SearchPage />} /> {/* Added SearchPage Route */}
-      
+    <Route path="/search" element={<SearchPage />} />
+
       
 
       <Route path="/dining-hall/:diningHallId" element={<DiningHall />} />
