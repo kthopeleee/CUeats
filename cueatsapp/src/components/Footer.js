@@ -1,3 +1,5 @@
+// src/components/Footer.js
+
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Footer.css';
@@ -19,7 +21,7 @@ function Footer() {
         </Link>
       </div>
       <div className="footer-item">
-        <Link to="/review" className={`footer-link ${location.pathname === '/review' ? 'active' : ''}`}>
+        <Link to="/search" className={`footer-link ${location.pathname === '/search' ? 'active' : ''}`}>
           <img className="footer-icon" src={reviewIcon} alt="Review Icon" />
           <div>Review</div>
         </Link>

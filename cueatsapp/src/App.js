@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import HomePage from './components/HomePage'; // Correctly import HomePage
 import Feed from './components/Feed';
 import DiningHall from './components/DiningHall';
 import FoodItemDetails from './components/FoodItemDetails';
@@ -13,8 +14,12 @@ function App() {
   return (
     <ErrorBoundary>
     <Routes>
-      <Route path="/" element={<Feed />} />
-      <Route path="/feed" element={<Feed />} /> {/* New Route */}
+    <Route path="/" element={<HomePage />} /> {/* Correctly point HomePage here */}
+    <Route path="/feed" element={<Feed />} /> {/* New Route     
+      <Route path="/search" element={<SearchPage />} /> {/* Added SearchPage Route */}
+      
+      
+
       <Route path="/dining-hall/:diningHallId" element={<DiningHall />} />
       <Route path="/food-item-details/:foodItemId" element={<FoodItemDetails />} />
       <Route path="/review/:foodItemId" element={<Review />} />

@@ -19,6 +19,18 @@ export const addReview = async (reviewData) => {
   }
 };
 
+
+export const getAllReviews = async () => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/reviews`);
+    return response.data.reviews;
+  } catch (error) {
+    const errorMsg = error.response?.data?.error || error.message;
+    throw new Error(errorMsg);
+  }
+};
+
+
 // Function to get reviews for a specific food item
 export const getReviewsForFoodItem = async (foodItemId) => {
   try {

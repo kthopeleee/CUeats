@@ -1,27 +1,16 @@
 // src/hooks/useReviews.js
-
 import { useEffect, useState } from 'react';
-import { getReviewsForFoodItem } from '../services/reviewService';
+import { getAllReviews } from '../services/reviewService';
 
-const useReviews = (foodItemIds) => {
+const useReviews = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!foodItemIds || foodItemIds.length === 0) {
-      setReviews([]);
-      setLoading(false);
-      return;
-    }
-
-    const fetchAllReviews = async () => {
+    const fetchReviews = async () => {
       try {
-        const allReviews = [];
-        for (const id of foodItemIds) {
-          const fetchedReviews = await getReviewsForFoodItem(id);
-          allReviews.push(...fetchedReviews);
-        }
+        const allReviews = await getAllReviews();
         setReviews(allReviews);
         setLoading(false);
       } catch (err) {
@@ -30,8 +19,8 @@ const useReviews = (foodItemIds) => {
       }
     };
 
-    fetchAllReviews();
-  }, [foodItemIds]);
+    fetchReviews();
+  }, []);
 
   return { reviews, loading, error };
 };

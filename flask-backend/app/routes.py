@@ -4,9 +4,29 @@ from flask import Blueprint, request, jsonify
 from . import db
 from .models import Review
 
+
 api = Blueprint('api', __name__)
 
-@api.route('/reviews', methods=['POST'])
+
+@api.route('/api/reviews', methods=['GET'])
+def get_all_reviews():
+    try:
+        reviews = Review.query.all()
+        reviews_data = [
+            {
+                "id": review.id,
+                "foodItemId": review.food_item_id,
+                "stars": review.stars,
+                "text": review.text,
+                "time": review.time
+            }
+            for review in reviews
+        ]
+        return jsonify({"reviews": reviews_data}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    
+@api.route('reviews', methods=['POST'])
 def add_review():
     data = request.get_json()
     
@@ -54,6 +74,11 @@ def add_review():
 
 @api.route('/reviews/<food_item_id>', methods=['GET'])
 def get_reviews(food_item_id):
-    reviews = Review.query.filter_by(food_item_id=food_item_id).all()
-    reviews_list = [review.to_dict() for review in reviews]
-    return jsonify({'reviews': reviews_list}), 200
+    try:
+        reviews = Review.query.filter_by(food_item_id=food_item_id).all()
+        if not reviews:
+            return jsonify({'error': f'No reviews found for food_item_id: {food_item_id}'}), 404
+        reviews_list = [review.to_dict() for review in reviews]
+        return jsonify({'reviews': reviews_list}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
