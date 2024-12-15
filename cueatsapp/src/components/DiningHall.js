@@ -76,10 +76,12 @@ function DiningHall() {
       const itemReviews = combinedReviews.filter((review) => review.foodItemId === item.id);
       const averageRating =
         itemReviews.length > 0
-          ? itemReviews.reduce((sum, review) => sum + review.stars, 0) / itemReviews.length
+          ? (itemReviews.reduce((sum, review) => sum + review.stars, 0) / itemReviews.length).toFixed(1)
           : null;
-
-      return { ...item, reviews: itemReviews, averageRating };
+      const numReviews = averageRating
+          ? `(${itemReviews.length} rating${itemReviews.length !== 1 ? 's' : ''})`
+          : 'No ratings yet';
+      return { ...item, reviews: itemReviews, averageRating, numReviews };
     });
   }, [foodItems, combinedReviews]);
 
@@ -164,7 +166,8 @@ function DiningHall() {
         <div className={`header-subtitle ${!currentStatus.isOpen ? 'status-closed' : 'status-open'}`}>
           {currentStatus.message}
         </div>
-        <div className="tabs">
+        
+        {/*<div className="tabs">
           {['All', 'Breakfast', 'Lunch', 'Dinner'].map((meal) => (
             <button
               key={meal}
@@ -174,8 +177,53 @@ function DiningHall() {
               {meal}
             </button>
           ))}
+        </div>*/}
+        <div className="tabs">
+          {/* Breakfast */}
+          {diningHall.timesOpen.breakfast[0] && diningHall.timesOpen.breakfast[1] && (
+            <button
+              className={`tab-button ${selectedMeal === 'Breakfast' ? 'active' : ''}`}
+              onClick={() => setSelectedMeal('Breakfast')}
+              aria-label={`Filter for Breakfast (Open from ${diningHall.timesOpen.breakfast[0]} to ${diningHall.timesOpen.breakfast[1]})`}
+            >
+              Breakfast<br />
+              <span className="tab-time">{diningHall.timesOpen.breakfast[0]} - {diningHall.timesOpen.breakfast[1]}</span>
+            </button>
+          )}
+          {/* Lunch */}
+          {diningHall.timesOpen.lunch[0] && diningHall.timesOpen.lunch[1] && (
+            <button
+              className={`tab-button ${selectedMeal === 'Lunch' ? 'active' : ''}`}
+              onClick={() => setSelectedMeal('Lunch')}
+              aria-label={`Filter for Lunch (Open from ${diningHall.timesOpen.lunch[0]} to ${diningHall.timesOpen.lunch[1]})`}
+            >
+              Lunch<br />
+              <span className="tab-time">{diningHall.timesOpen.lunch[0]} - {diningHall.timesOpen.lunch[1]}</span>
+            </button>
+          )}
+          {/* Dinner */}
+          {diningHall.timesOpen.dinner[0] && diningHall.timesOpen.dinner[1] && (
+            <button
+              className={`tab-button ${selectedMeal === 'Dinner' ? 'active' : ''}`}
+              onClick={() => setSelectedMeal('Dinner')}
+              aria-label={`Filter for Dinner (Open from ${diningHall.timesOpen.dinner[0]} to ${diningHall.timesOpen.dinner[1]})`}
+            >
+              Dinner<br />
+              <span className="tab-time">{diningHall.timesOpen.dinner[0]} - {diningHall.timesOpen.dinner[1]}</span>
+            </button>
+          )}
+          {/* All */}
+          <button
+            className={`tab-button ${selectedMeal === 'All' ? 'active' : ''}`}
+            onClick={() => setSelectedMeal('All')}
+            aria-label="Show all dishes"
+          >
+            All<br />
+            <span className="tab-time">All Meals</span>
+          </button>
         </div>
       </div>
+
       <div className="section">
         {filteredFoodItems.map((item) => (
           <Link to={`/food-item-details/${item.id}`} key={item.id} className="dish-link">
@@ -202,11 +250,23 @@ function DiningHall() {
                   ></i>
                 ))}
                 <span className="rating-text">
-                  {item.averageRating ? item.averageRating.toFixed(1) : 'No ratings yet'}
+                  {item.averageRating} {item.numReviews}
                 </span>
               </div>
-              <div className="dish-info-green">{item.station}</div>
+              <div className="dish-info-green">{item.station} until {diningHall.timesOpen.dinner[0]}</div>
               <div className="dish-info">Contains {item.allergies.join(', ')}</div>
+              {/* Optionally display a snippet of the latest review */}
+              {item.reviews.length > 0 && (
+                  <div className="review">
+                    <span className="comment-icon">💬</span>
+                    <span>
+                      “{item.reviews[item.reviews.length - 1].text.substring(0, 65)}”
+                      {item.reviews[item.reviews.length - 1].text.length > 65 && (
+                        <span className="read-more">...Read more</span>
+                      )}
+                    </span>
+                  </div>
+                )}
             </div>
           </Link>
         ))}

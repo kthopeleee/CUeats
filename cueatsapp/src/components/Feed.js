@@ -124,39 +124,50 @@ function Feed() {
 
           return (
             <div key={review.id} className="review-item">
-              <div className="review-header">
-                <img
-                  src={`/assets/Images/${foodItem.images[0]}`}
-                  alt={foodItem.name}
-                  className="review-food-image"
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = '/assets/Images/default.png'; // Fallback image
-                  }}
-                />
-                <div className="review-info">
-                  <Link to={`/food-item-details/${foodItem.id}`} className="food-item-link">
-                    <h3 className="food-item-name">{foodItem.name}</h3>
-                  </Link>
-                  <p className="dining-hall-name">{diningHall.name}</p>
-                </div>
+              <h3>{foodItem.name}</h3>
+              <div className="ratings-options">
+                <span className="stars">
+                    {Array.from({ length: 5 }, (_, idx) => (
+                    <i
+                        key={idx}
+                        className={
+                        idx < Math.round(review.stars)
+                            ? 'fa-solid fa-star'
+                            : 'fa-regular fa-star'
+                        }
+                    ></i>
+                    ))}
+                </span>
+                <span className="actions">
+                  <i className="fa-regular fa-heart"></i>
+                  <i className="fa-solid fa-share-nodes"></i>
+                </span>
               </div>
-              <div className="review-stars">
-                {Array.from({ length: 5 }, (_, idx) => (
-                  <i
-                    key={idx}
-                    className={
-                      idx < Math.round(review.stars)
-                        ? 'fa-solid fa-star'
-                        : 'fa-regular fa-star'
-                    }
-                  ></i>
-                ))}
-                <span className="star-rating-text">{review.stars.toFixed(1)} Stars</span>
+
+              <div className="content-feed">
+                {foodItem.images && foodItem.images.length > 0 && (
+                    <img
+                        src={`/assets/Images/${foodItem.images[0]}`}
+                        alt={foodItem.name}
+                        className="review-food-image"
+                        onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = '/assets/Images/default.png'; // Fallback image
+                        }}
+                    />
+                )}
+                <p>
+                    {review.text.length > 100
+                    ? `${review.text.substring(0, 100)}... `
+                    : review.text}
+                    {review.text.length > 100 && (
+                    <Link to={`/food-item-details/${foodItem.id}`}>Read more</Link>
+                    )}
+                </p>
               </div>
-              <p className="review-text">{review.text}</p>
-              <div className="review-footer">
-                <span className="review-time">{new Date(review.time).toLocaleString()}</span>
+              <div className="location-time">
+                <span>{diningHalls.find((hall) => hall.id === foodItem.diningHallId)?.name}</span>
+                <span>{new Date(review.time).toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', month: '2-digit', day: '2-digit', year: 'numeric'})}</span>
               </div>
             </div>
           );

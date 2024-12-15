@@ -192,14 +192,15 @@ body {
 
 .dish-image {
   object-fit: cover;      /* Maintain aspect ratio and cover the container */
-  height: 200px;          /* Fixed height for uniformity */
+  width: 100%;
+  height: 100%;
   border-radius: 10px;    /* Rounded corners for aesthetics */
 }
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .dish-image {
-    height: 150px;
+    height: 200px;
   }
 
   .images-row-3 {

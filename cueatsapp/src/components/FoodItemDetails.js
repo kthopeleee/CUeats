@@ -96,34 +96,42 @@ function FoodItemDetails() {
 
       {/* Reviews Section */}
       <div className="section">
-        <div className="reviews-header">
-          <h2>Reviews ({combinedReviews.length})</h2>
-        </div>
-        <div className="reviews-list">
+        <div className="reviews-header"> Reviews ({combinedReviews.length}) </div>
+        <div className="sort-options">↑↓ Recent</div>
+        
+        {/*Render Reviews*/}
           {sortedReviews.map((review) => (
             <div key={`${review.id}-${review.time}`} className="review-item">
-              <div className="review-stars">
-                {Array.from({ length: 5 }, (_, idx) => (
-                  <i
-                    key={idx}
-                    className={idx < Math.round(review.stars) ? 'fa-solid fa-star' : 'fa-regular fa-star'}
-                  ></i>
-                ))}
-                <span className="star-rating-text">{review.stars.toFixed(1)} Stars</span>
+              <div className="ratings-options">
+                <span className="stars">
+                  {Array.from({ length: 5 }, (_, idx) => (
+                    <i
+                      key={idx}
+                      className={idx < Math.round(review.stars) ? 'fa-solid fa-star' : 'fa-regular fa-star'}
+                    ></i>
+                  ))}
+                </span>
+                <span className="actions">
+                    <i className="fa-regular fa-heart"></i>
+                    <i className="fa-solid fa-share-nodes"></i>
+                </span>
               </div>
-              <p className="review-text">{review.text}</p>
-              {review.impressions && review.impressions.length > 0 && (
-                <div className="review-impressions">
-                  <strong>Impressions:</strong> {review.impressions.join(', ')}
-                </div>
-              )}
-              <div className="review-footer">
-                <span className="review-time">{new Date(review.time).toLocaleString()}</span>
+              
+              <p className="content">
+                {review.impressions && review.impressions.length > 0 && (
+                  <>
+                    <text className="tag">{review.impressions.join(', ')}</text>
+                    <br/>
+                  </>
+                )}
+                {review.text}</p>
+              
+              <div className="location-time">
+                <span>{new Date(review.time).toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', month: '2-digit', day: '2-digit', year: 'numeric'})}</span>
               </div>
             </div>
           ))}
         </div>
-      </div>
 
       {/* Footer */}
       <Footer />
