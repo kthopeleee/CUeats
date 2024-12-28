@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/CUeats/static/css/main.ac2ea93c.css",
+    "main.js": "/CUeats/static/js/main.e0f3a125.js",
+    "static/media/fa-solid-900.ttf": "/CUeats/static/media/fa-solid-900.ad1782c70927ebc5bc87.ttf",
+    "static/media/fa-brands-400.ttf": "/CUeats/static/media/fa-brands-400.26b80c8830bebf340211.ttf",
+    "static/media/fa-solid-900.woff2": "/CUeats/static/media/fa-solid-900.83a538a018a9e44b023a.woff2",
+    "static/media/fa-brands-400.woff2": "/CUeats/static/media/fa-brands-400.fdbb558523a380307689.woff2",
+    "static/media/fa-regular-400.ttf": "/CUeats/static/media/fa-regular-400.05fdd87be89f7f8f0a1e.ttf",
+    "static/media/Keyboard.png": "/CUeats/static/media/Keyboard.c733dd6bfd67b789fdb6.png",
+    "static/media/fa-regular-400.woff2": "/CUeats/static/media/fa-regular-400.4f6a2dabee9c092d09b9.woff2",
+    "static/media/fa-v4compatibility.ttf": "/CUeats/static/media/fa-v4compatibility.fa86b3c85e77abbd2ebd.ttf",
+    "static/media/fa-v4compatibility.woff2": "/CUeats/static/media/fa-v4compatibility.c3ea317a0f10f201597f.woff2",
+    "static/media/feed.svg": "/CUeats/static/media/feed.c059c62dc37ae5496b711946d5f9e9e1.svg",
+    "static/media/home.svg": "/CUeats/static/media/home.a96a914effb01a57170279e1367308d1.svg",
+    "index.html": "/CUeats/index.html",
+    "static/media/magnifyingglass.svg": "/CUeats/static/media/magnifyingglass.15333c90e5fe0d09256e080f6821a514.svg",
+    "static/media/logo.svg": "/CUeats/static/media/logo.d39d1f24e5a0768906f41fbd37b73fba.svg",
+    "static/media/review.svg": "/CUeats/static/media/review.5cadf59346889567303bb8f8990a698a.svg",
+    "main.ac2ea93c.css.map": "/CUeats/static/css/main.ac2ea93c.css.map",
+    "main.e0f3a125.js.map": "/CUeats/static/js/main.e0f3a125.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ac2ea93c.css",
+    "static/js/main.e0f3a125.js"
+  ]
+}

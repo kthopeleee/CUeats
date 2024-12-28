@@ -1,0 +1,73 @@
+
+[
+  {
+    "id": "review1",
+    "foodItemId": "grilled-cheese-ferris",
+    "stars": 4,
+    "text": "The grilled cheese at Ferris is pretty solid. Kind of basic but reliable. The line is so long though.",
+    "time": "2024-04-25T14:00:00Z"
+  },
+  {
+    "id": "review2",
+    "foodItemId": "grilled-cheese-ferris",
+    "stars": 5,
+    "text": "Absolutely delicious grilled cheese! Melted to perfection with crispy edges.",
+    "time": "2024-04-26T10:30:00Z"
+  },
+  {
+    "id": "review3",
+    "foodItemId": "waffles-ferris",
+    "stars": 4,
+    "text": "The waffles are crispy and sweet, perfect for breakfast.",
+    "time": "2024-04-27T09:15:00Z"
+  },
+  {
+    "id": "review4",
+    "foodItemId": "salmon-jj",
+    "stars": 5,
+    "text": "Fresh and flavorful salmon! A healthy and tasty option.",
+    "time": "2024-04-25T13:00:00Z"
+  },
+  {
+    "id": "review5",
+    "foodItemId": "tacos-jj",
+    "stars": 4,
+    "text": "Spicy and delicious tacos. Quick service!",
+    "time": "2024-04-26T12:45:00Z"
+  },
+  {
+    "id": "review6",
+    "foodItemId": "honey-chicken-hewitt",
+    "stars": 5,
+    "text": "Honey chicken is the best! Sweet and crispy every time.",
+    "time": "2024-04-27T18:20:00Z"
+  },
+  {
+    "id": "review7",
+    "foodItemId": "burger-hewitt",
+    "stars": 4,
+    "text": "Classic cheeseburger with a juicy patty. Great for lunch.",
+    "time": "2024-04-25T14:30:00Z"
+  },
+  {
+    "id": "review8",
+    "foodItemId": "burger-hewitt",
+    "stars": 5,
+    "text": "Loved the cheesy goodness in the burger! Highly recommend.",
+    "time": "2024-04-26T11:00:00Z"
+  },
+  {
+    "id": "review9",
+    "foodItemId": "salmon-jj",
+    "stars": 4,
+    "text": "Good portion size and fresh taste.",
+    "time": "2024-04-27T14:10:00Z"
+  },
+  {
+    "id": "review10",
+    "foodItemId": "waffles-ferris",
+    "stars": 5,
+    "text": "Perfectly cooked waffles with just the right amount of sweetness!",
+    "time": "2024-04-28T08:50:00Z"
+  }
+]
